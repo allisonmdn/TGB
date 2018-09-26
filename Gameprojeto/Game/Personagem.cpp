@@ -4,36 +4,9 @@
 
 Personagem::Personagem()
 {
-		
-}
+	srand(time(0));
+	respawn = rand() % 3 + 1; //Between 1 and 3 to randomly respawn (Tiled Obj. Pos.).
 
-
-Personagem::~Personagem()
-{
-}
-
-void Personagem::setSpriteSheet(std::string sSprite)
-{
-	
-	spr.setSpriteSheet(sSprite);//Set spr to get variable type string
-	setSprite(&spr);
-	
-}
-
-void Personagem::setRespawn()
-{
-	this->width = 800;
-	this->height = 600;
-	respawn = rand() % 3 + 1;
-				
-	//this->x = rand() % width; //Variable "x" and "y" to randomly respawn.
-	//this->y = rand() % height;
-		
-}
-
-void Personagem::draw()	//Draws using the variable as condition.
-{		
-	
 	if (respawn == 1)
 	{
 		this->dir.x = 288;
@@ -52,6 +25,32 @@ void Personagem::draw()	//Draws using the variable as condition.
 		this->dir.y = 96;
 		//Pos3 
 	}
+	
+	//Respawn free of pos. in obj. layer.
+
+	/*this->width = 800;
+	this->height = 600;	
+
+	this->x = rand() % width; //Variable "x" and "y" to randomly respawn.
+	this->y = rand() % height;*/
+}
+
+
+Personagem::~Personagem()
+{
+}
+
+void Personagem::setSpriteSheet(std::string sSprite)
+{
+	
+	spr.setSpriteSheet(sSprite);//Set spr to get variable type string
+	setSprite(&spr);
+	
+}
+
+void Personagem::draw()	//Draws using the variable as condition.
+{		
+	
 	this->spr.desenhar(dir.x, dir.y);
 	
 	//from Tiled
@@ -61,54 +60,58 @@ void Personagem::draw()	//Draws using the variable as condition.
 	//Pos3 513, 96;
 }
 void Personagem::update()
-{		
+{	
+	
 	if (gTeclado.segurando[TECLA_D])
-	{			
-		dir.set(1, 0);
+	{	
 		
-		spr.setAnimacao(2, false);				
+		dir.x += 1;
+		
+		spr.setAnimacao(2, false);
+		
 		//x + 1;
 	}
 	else if (gTeclado.segurando[TECLA_A])
 	{
-		dir.set(-1, 0);
+		dir.x -= 1;;
 		
 		spr.setAnimacao(1, false);		
 		//x - 1;
 	}
 	else if (gTeclado.segurando[TECLA_W])
 	{
-		dir.set(0, 1);
+		dir.y -= 1;
 		
 		spr.setAnimacao(3, false);		
-		//y + 1;
+		//y - 1;
 	}
 	else if (gTeclado.segurando[TECLA_S])
 	{
-		dir.set(0, -1);
+		//dir.set(dir.x,dir.y + 1);
 		
+		dir.y += 1;
 		spr.setAnimacao(0, false);
-		//y - 1;  
+		//y + 1;  
 	}
 	else
 	{			
-		dir.set(0, 0);		
+		this->dir.set(dir.x, dir.y);
 		spr.recomecarAnimacao();		
 	}
 	
 	spr.avancarAnimacao();
 
 	Vetor2D pos = getPosCentro();
-	pos += dir * speed / 2 * gTempo.getDeltaTempo();
+	pos += dir * speed * 2 * gTempo.getDeltaTempo();
 	setPosCentro(pos);		
 }
 
-/*void Personagem::setSpeed()
+void Personagem::setSpeed()
 {
 	this->speed = 1;
 }
 float Personagem::getSpeed()
 {
 	return speed;
-}*/
+}
 
