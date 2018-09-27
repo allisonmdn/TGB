@@ -1,0 +1,4 @@
+sprite_sheet "assets/tilemaps/mapa.json" 1 1
+sprite_sheet "assets/spritesheets/Knight.png" 4 4
+sprite_sheet "assets/spritesheets/Mage.png" 4 4
+sprite_sheet "assets/spritesheets/Thief.png" 4 4
