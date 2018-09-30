@@ -11,8 +11,5 @@ Warrior::Warrior()
 Warrior::~Warrior()
 {
 }
-void Warrior::Update1()
-{
-	update();
-}
+
 
