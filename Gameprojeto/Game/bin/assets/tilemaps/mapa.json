@@ -113,6 +113,14 @@
          "imagewidth":256,
          "margin":0,
          "name":"tileset_campo",
+         "properties":
+            {
+             "campo_config":"assets\/tillemaps\/tilesets\/campo_config.txt"
+            },
+         "propertytypes":
+            {
+             "campo_config":"string"
+            },
          "spacing":0,
          "tilecount":80,
          "tileheight":32,
