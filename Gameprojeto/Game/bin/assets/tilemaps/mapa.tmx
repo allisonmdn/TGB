@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextobjectid="4">
  <tileset firstgid="1" name="tileset_campo" tilewidth="32" tileheight="32" tilecount="80" columns="8">
+  <properties>
+   <property name="campo_config" value="assets/tillemaps/tilesets/campo_config.txt"/>
+  </properties>
   <image source="tilesets/tileset_campo.png" width="256" height="320"/>
  </tileset>
  <layer name="Ground1" width="25" height="19">
