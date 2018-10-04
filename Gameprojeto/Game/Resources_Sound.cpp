@@ -29,7 +29,7 @@ void Resources_Sound::setEffectSong(std::string Effect_s)
 	gRecursos.carregarAudio("hit", "assets/sounds/Hit.wav");
 	gRecursos.carregarAudio("hurt", "assets/sounds/Hurt.wav");
 	gRecursos.carregarAudio("laser_shoot","assets/sounds/Laser_Shoot.wav");
-	gMusica.tocar(Effect_s, false);
+	Effect.setAudio(Effect_s);
 	
 	if (!gRecursos.carregouAudio(Effect_s))
 	{
