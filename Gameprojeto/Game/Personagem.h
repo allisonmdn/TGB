@@ -12,6 +12,8 @@ public:
 	void setSpriteSheet(std::string sSheet);	
 	virtual void draw();
 	virtual void update();
+	virtual void attack();
+	virtual void walk();
 	//void setSpeed();
 	//float getSpeed();
 	

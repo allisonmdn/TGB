@@ -1,7 +1,6 @@
 #include "Personagem.h"
 
 
-
 Personagem::Personagem()
 {
 	
@@ -64,51 +63,62 @@ void Personagem::draw()	//Draws using the variable as condition.
 }
 void Personagem::update()
 {	
-	
+	attack();
+	walk();
+			
+}
+void Personagem::attack()
+{
+	if (gTeclado.soltou[TECLA_ESPACO])
+	{
+		//Attack.
+		Sounds.setEffectSong("Hit");
+	}
+
+}
+void Personagem::walk()
+{
 	if (gTeclado.segurando[TECLA_D])
-	{	
+	{
 		//Right
-		dir.x += 1;						
-		spr.setAnimacao(2, false);				
+		dir.x += 1;
+		spr.setAnimacao(2, false);
 		//x + 1;
 	}
 	else if (gTeclado.segurando[TECLA_A])
 	{
 		//Left
-		dir.x -= 1;		
-		spr.setAnimacao(1, false);		
+		dir.x -= 1;
+		spr.setAnimacao(1, false);
 		//x - 1;
 	}
 	else if (gTeclado.segurando[TECLA_W])
 	{
 		//Up
-		dir.y -= 1;		
-		spr.setAnimacao(3, false);		
+		dir.y -= 1;
+		spr.setAnimacao(3, false);
 		//y - 1;
 	}
 	else if (gTeclado.segurando[TECLA_S])
 	{
 		//Down		
-		dir.y += 1;	
+		dir.y += 1;
 		spr.setAnimacao(0, false);
 		//y + 1;  
 	}
-	else if (gTeclado.soltou[TECLA_ESPACO])
-	{
-		//Attack.
 
-	}
 	else
-	{			
+	{
 		this->dir.set(dir.x, dir.y);
-		spr.recomecarAnimacao();		
+		spr.recomecarAnimacao();
 	}
-	
+
 	spr.avancarAnimacao();
 
 	/*Vetor2D pos = getPosCentro();
 	pos += dir * speed * 2 * gTempo.getDeltaTempo();
-	setPosCentro(pos);*/		
+	setPosCentro(pos);*/
+	
 }
 
 /*void Personagem::setSpeed()
