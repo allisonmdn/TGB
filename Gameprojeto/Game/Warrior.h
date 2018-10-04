@@ -1,12 +1,13 @@
 #include "Personagem.h"
 
+
 #pragma once
-class Warrior: virtual public Personagem
+class Warrior :public Personagem
 {
 public:
 	Warrior();
 	~Warrior();
-	
+	void Update1();
+
 
 };
-

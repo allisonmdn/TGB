@@ -1,10 +1,11 @@
-#include "Personagem.h"
-
 #pragma once
-class Thief: virtual public Personagem
+#include "Personagem.h"
+class Thief :
+	public Personagem
 {
 public:
 	Thief();
 	~Thief();
+
 };
 

@@ -1,10 +1,12 @@
-#include "Personagem.h"
-
 #pragma once
-class Mage : virtual public Personagem
+#include "Personagem.h"
+class Mage :
+	public Personagem
 {
 public:
 	Mage();
 	~Mage();
+	void attack() override;
+
 };
 

@@ -25,9 +25,9 @@ bool LoadingResources::Loader(std::fstream & fstr_resource_f)
 		gDebug.depurar("nResources", this->resources_n);
 
 		while (!fstr_resource_f.eof())
-		{				
+		{
 			fstr_resource_f >> def_resource_type >> def_resource_name >> def_resource_local >> def_n_animations >> def_n_max_frames;
-			
+
 
 			if (!fstr_resource_f.fail())
 			{
@@ -50,7 +50,7 @@ bool LoadingResources::Loader(std::fstream & fstr_resource_f)
 				if (def_resource_type == "music")
 				{
 					gRecursos.carregarMusica(def_resource_name, def_resource_local, std::stof(vol, &size));
-				
+
 				}
 
 				if (!gRecursos.carregouSpriteSheet(def_resource_name) || !gRecursos.carregouAudio(def_resource_type) || !gRecursos.carregouMusica(def_resource_type))
@@ -66,25 +66,17 @@ bool LoadingResources::Loader(std::fstream & fstr_resource_f)
 					if (!gRecursos.carregouMusica(def_resource_type))
 					{
 						gDebug.erro("Error in loading resources (Music Background)");
-						
+
 					}
 
 					return false;
 				}
-				
-				
 
-		    }			 
+			}
 
 		}
 
-
 		return true;
 
-
-
 	}
-
-
-
 }
