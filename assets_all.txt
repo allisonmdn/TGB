@@ -1,0 +1,6 @@
+2
+sprite_sheet mapa assets/tilemaps/mapa.json 1 1
+sprite_sheet knight assets/spritesheets/Knight.png 4 4
+sprite_sheet mage assets/spritesheets/Mage.png 4 4
+sprite_sheet thief assets/spritesheets/Thief.png 4 4
+music desert_theme assets/sounds/Desert_Theme.mp3
