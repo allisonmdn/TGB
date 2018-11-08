@@ -1,0 +1,27 @@
+ÁRVORES BINÁRIAS
+
+
+CAMINHAMENTO PRÉ-FIXADO
+
+REGRAS CAMINHO:
+
+¹ Visita a raiz
+² Percorre a subárvore da esquerda
+³ Percorre a subárvore da direita
+
+CAMINHAMENTO CENTRAL
+
+REGRAS CAMINHO:
+
+¹ Percorre a subárvore da esquerda
+² Visita a raiz
+³ Percorre a subárvore da direita
+
+CAMINHAMENTO PÓS-FIXADO
+
+REGRAS CAMINHO:
+
+¹ Percorre a subárvore da esquerda
+² Percorre a subárvore da direita
+³ Visita a raiz
+
