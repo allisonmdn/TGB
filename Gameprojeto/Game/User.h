@@ -3,24 +3,25 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include "Account.h"
 
 #pragma once
-class User
+class User: virtual public Account
 {
 public:
 	User();
 	~User();
 	void Register();
-	void Login();
+	void Login();	
 	
 protected:
 	std::string userName, passWord, userNameC, passWordC;
-	std::vector <std::string> uStack, pStack, account;//Account[0] == uStack[0] and pStack[0]; 	
+	std::vector <std::string> uStack, pStack; 	
 	std::string uNameLog, passwLog;
-	std::fstream us; std::fstream pass;
-	bool acessGranted;
+	std::ofstream reg;
+	std::ifstream regIn;
 	std::vector <std::string>::iterator itU, itP;
+	
 	
 };
 
