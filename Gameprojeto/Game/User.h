@@ -15,12 +15,11 @@ public:
 	void Login();	
 	
 protected:
-	std::string userName, passWord, userNameC, passWordC;
-	std::vector <std::string> uStack, pStack; 	
+	std::string userName, passWord, userNameC, passWordC;	 	
 	std::string uNameLog, passwLog;
 	std::ofstream reg;
 	std::ifstream regIn;
-	std::vector <std::string>::iterator itU, itP;
+	
 	
 	
 };

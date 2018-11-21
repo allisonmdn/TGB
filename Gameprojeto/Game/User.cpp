@@ -14,12 +14,10 @@ User::~User()
 void User::Login()
 {
 	regIn.open("Register.bin", std::ios::binary);  //Open.
-	//pass.open("Password.bin", std::ios::in | std::ios::binary);
 	
-
 	Account *account = new Account();
 
-	while (/*!us.eof() && !pass.eof()*/ !regIn.eof())
+	while (!regIn.eof())
 	{
 		regIn.read(reinterpret_cast<char *>(account), sizeof(Account));
 		userName = account->username;
@@ -29,18 +27,12 @@ void User::Login()
 	std::cout << "Enter your username and password.\n";
 	std::cout << "Username: ";
 	std::cin >> uNameLog;
-
-	//itU = std::find(uStack.begin(), uStack.end(), uNameLog);
 	
-	//itU != uStack.end()
-
 	if (uNameLog == userName)
 	{
 		std::cout << "Password: ";
 		std::cin >> passwLog;
-
-		//itP = std::find(pStack.begin(), pStack.end(), passwLog);
-		//itP != pStack.end()
+				
 		if (passwLog == passWord)
 		{	 			
 			std::cout << "Password correct!\n";			
@@ -55,17 +47,16 @@ void User::Login()
 		std::cout << "Username incorrect! \n";
 		
 	}
-	//us.close()  //Close.
-	//pass.close();
+	
 	regIn.close();
 	
 }
 
 void User::Register()
 {
+	 	
 	reg.open("Register.bin", std::ios::binary);	  //Open
-	//pass.open("Password.bin", std::ios::out | std::ios::binary);
-	
+		
 	Account *account = new Account();
 
 	do {													  //Username
@@ -74,8 +65,7 @@ void User::Register()
 		std::cout << "\n";				
 				
 		if (userName.length() >= 6 && userName.length() <= 12)
-		{
-			//us << userName; 
+		{				
 			account->username = userName;
 			break;
 		}
@@ -92,9 +82,7 @@ void User::Register()
 		std::cin >> passWordC;
 		if (passWordC == passWord && passWord.length() >= 6 && passWord.length() <= 12)
 		{  			
-			//pass << "\n" << passWord << "\n";
-					
-
+			
 			account->password = passWord;
 			
 			reg.write(reinterpret_cast<char *>(account), sizeof(Account));
