@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "User.h"
 
 
@@ -21,7 +21,8 @@ void User::Login()
 	{
 		regIn.read(reinterpret_cast<char *>(account), sizeof(Account));
 		userName = account->username;
-		passWord = account->password;		
+		passWord = account->password;		//Stack vector.
+		
 	}
 	
 	std::cout << "Enter your username and password.\n";
@@ -58,7 +59,7 @@ void User::Register()
 	reg.open("Register.bin", std::ios::binary);	  //Open
 		
 	Account *account = new Account();
-
+	
 	do {													  //Username
 		std::cout << "Register your username: " << std::endl;
 		std::cin >> userName;
@@ -84,7 +85,9 @@ void User::Register()
 		{  			
 			
 			account->password = passWord;
-			
+
+			StackUser.accountStack.push_back(*account);
+
 			reg.write(reinterpret_cast<char *>(account), sizeof(Account));
 		}
 		else

@@ -4,9 +4,10 @@
 #include <vector>
 #include <algorithm>
 #include "Account.h"
+#include "StackAccounts.h"
 
 #pragma once
-class User: virtual public Account
+class User
 {
 public:
 	User();
@@ -19,7 +20,7 @@ protected:
 	std::string uNameLog, passwLog;
 	std::ofstream reg;
 	std::ifstream regIn;
-	
+	StackAccounts StackUser;
 	
 	
 };
