@@ -1,30 +1,45 @@
-#include <string>
 #include <iostream>
+#include "libUnicornio.h"
 #include <stack>
-#include <array>
+#include <string>
 #pragma once
 class Menu
 {
 public:
 	Menu();
 	~Menu();
-	bool Resume();
-	bool NewGame();
-	bool SaveGame();
-	void Options();	 // Opções gerais.
-	void Sounds();	 // Config sons.
-	void Graphics();  // Resolução de telas, entre outros.
-	void Controls();  // Controles
-	bool ExitGame();
-	void DrawMenu();
+
+	void updateMenu();
+	void LoadMenu();
+	void FirstWindow();
+	void newGame_m();
+	void loadGame_m();
+	void ranking_m();
+	void credits_m();
+	void options_m();
+	bool Exit_m();
 
 
 protected:
-	std::array<Menu, 4> menu;
-	std::string m_options[5];
-	int m_options_index[5];
-	std::stack <Menu*> pilha_menu;
-	int op;
-	
+
+	BotaoSprite novoJogo;
+	BotaoSprite carregarJogo;
+	BotaoSprite ranking;
+	BotaoSprite creditos;
+	BotaoSprite sair;
+	BotaoSprite voltar;
+	BotaoSprite regster;
+	BotaoSprite Blogin;
+
+	// First Page
+
+	BotaoSprite cadastrarUsuario;
+	BotaoSprite login;
+	Sprite loginScene;
+	int op = 0;
+	int sizeStack; // Size of stack
+	bool ext = false;
+
+	std::stack<int> stackMenu;
 };
 
