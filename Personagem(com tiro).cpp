@@ -72,6 +72,24 @@ void Personagem::draw()	//Draws using the variable as condition.
 	text.setEspacamentoLinhas(1.5f);
 
 	this->spr.desenhar(dir.x, dir.y);
+	
+	//HpBar
+
+	        //BEGIN
+
+	healthBar_Borda.setSpriteSheet("Borda");
+	healthBar_Borda.desenhar(dir.x, (dir.y - 25));
+
+	hB_Fundo.setSpriteSheet("FundoBarra");
+	hB_Fundo.desenhar(dir.x, (dir.y - 25));
+
+	hB_Points.setSpriteSheet("HpPointsPixel");
+	hB_Points.desenhar(dir.x, (dir.y - 25));
+
+	hB_brilho.setSpriteSheet("BrilhoBarra");
+	hB_brilho.desenhar(dir.x, (dir.y - 25));
+
+	       //END
 
 //Draw with Vetor2D type.
 	this->Texto_.desenhar(150, 40);
