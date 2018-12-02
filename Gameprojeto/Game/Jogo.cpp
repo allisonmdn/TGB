@@ -47,6 +47,13 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("mage", "assets/spritesheets/mage.png", 4, 4);
 	gRecursos.carregarSpriteSheet("thief", "assets/spritesheets/thief.png", 4, 4);
 	gRecursos.carregarSpriteSheet("sound", "assets/spritesheets/sound.png", 2, 1);
+	//HpBar
+	
+	gRecursos.carregarSpriteSheet("Borda", "assets/spritesheets/HealthBar/Borda.png", 1, 1);
+	gRecursos.carregarSpriteSheet("BrilhoBarra", "assets/spritesheets/HealthBar/BrilhoBarra.png", 1, 1);
+	gRecursos.carregarSpriteSheet("FundoBarra", "assets/spritesheets/HealthBar/FundoBarra.png", 1, 1);
+	gRecursos.carregarSpriteSheet("HpPointsPixel", "assets/spritesheets/HealthBar/HpPointsPixel.png", 1, 1);
+	gRecursos.carregarSpriteSheet("HpPointsPixel2", "assets/spritesheets/HealthBar/HpPointsPixel2.png", 1, 1);
 
 	//Sounds
 	LoadS.LoadSongs(); // Load Songs.
