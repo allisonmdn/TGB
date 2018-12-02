@@ -24,6 +24,7 @@ public:
 protected:
 	Vetor2D dir, dir2;
 	Sprite spr, spr2, tiro;
+	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
 	float speed;
 	//int width, height; //Screen coordinates
 	int respawn;
