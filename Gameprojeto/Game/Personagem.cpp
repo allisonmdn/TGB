@@ -33,9 +33,7 @@ Personagem::Personagem()
 	this->height = 600;
 	this->x = rand() % width; //Variable "x" and "y" to randomly respawn.
 	this->y = rand() % height;*/
-	
-	
-	
+			
 
 	
 	dir2.x = dir.x;
@@ -61,12 +59,12 @@ void Personagem::draw()	//Draws using the variable as condition.
 {
 	
 
-	Texto_.setFonte("fonte");
+	Texto_.setFonte("fonte1");
 	Texto_.setString(TextoTeste);
 	Texto_.setAlinhamento(TEXTO_CENTRALIZADO);
 	Texto_.setEspacamentoLinhas(1.5f);
 
-	text.setFonte("fonte1");
+	text.setFonte("fonte2");
 	text.setString("Player");
 	text.setAlinhamento(TEXTO_CENTRALIZADO);
 	text.setEspacamentoLinhas(1.5f);
@@ -93,7 +91,7 @@ void Personagem::draw()	//Draws using the variable as condition.
 
 //Draw with Vetor2D type.
 	this->Texto_.desenhar(150, 40);
-	this->text.desenhar(dir.x, (dir.y - 25)); //Player text on person.
+	this->text.desenhar(dir.x, (dir.y - 35)); //Player text on person.
 
 
 	
@@ -123,9 +121,7 @@ void Personagem::attack()
 
 }
 void Personagem::walk()
-{
-	
-
+{	  
 	
 	if (gTeclado.segurando[TECLA_D])
 	{
@@ -184,27 +180,27 @@ void Personagem::shot()
 			if (direcao == 2)
 			{
 				tiro.desenhar(dir2.x, dir2.y);
-				dir2.x += 1;
+				dir2.x += 1;	 //+
 			}
 
 			if (direcao == 1)
 			{
 				tiro.desenhar(dir2.x, dir2.y);
-				dir2.x -= 1;
+				dir2.x -= 1;	  //-
 			}
 
 			if (direcao == 3)
 			{
 				tiro.desenhar(dir2.x, dir2.y);
-				dir2.y -= 1;
+				dir2.y -= 1; //-
 			}
 
 			if (direcao == 0)
 			{
 				tiro.desenhar(dir2.x, dir2.y);
-				dir2.y += 1;
-			}
-
+				dir2.y += 1; //+
+				
+			}	   
 
 			if (dir2.x < tiro.getLargura() || dir2.x > gJanela.getLargura() + tiro.getLargura())
 			{
@@ -212,14 +208,10 @@ void Personagem::shot()
 			}
 			if (dir2.y < tiro.getAltura() || dir2.y > gJanela.getAltura() + tiro.getLargura())
 			{
-				vivo = false;
-
-			}
-		
-		}
-		
-		Sounds.setEffectSong("hit");
-
+				vivo = false;  
+			}	   		
+		} 		
+		Sounds.setEffectSong("hit"); 
 	}
 }
 
