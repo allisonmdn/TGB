@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include "Score.h"
 #pragma once
 class Menu
 {
@@ -48,5 +49,6 @@ protected:
 	bool ext = false;
 
 	std::stack<int> stackMenu;
+	
 };
 

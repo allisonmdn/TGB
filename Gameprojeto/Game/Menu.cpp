@@ -101,69 +101,89 @@ void Menu::loadGame_m()
 
 void Menu::ranking_m()
 {
-		typedef std::unordered_map<std::string, int> type_map;
-		typedef std::unordered_multimap<std::string, Score> type_multimap;
-		typedef std::pair<std::string, Score> par;
+	typedef std::unordered_map<std::string, Score> type_map;
+	typedef std::unordered_multimap<std::string, Score> type_multimap;
+	typedef std::pair<std::string, Score> par;
 
-		type_map users;
-		type_multimap score;
-		par user;
-		type_multimap::iterator it_multimap, it_multimap2;
-		type_map::iterator it;
-
-		user.first = "Allison";	 //Account
-		user.second.kills = 7;
-		user.second.deaths = 5;
-
-		score.insert(user);
-
-		user.first = "Allan";
-		user.second.kills = 6;
-		user.second.deaths = 4;
-
-		score.insert(user);
-
-		user.first = "Anderson";
-		user.second.kills = 5;
-		user.second.deaths = 3;
-
-		score.insert(user);
-
-		user.first = "Felipe";
-		user.second.kills = 4;
-		user.second.deaths = 2;
-
-		score.insert(user);
-
-		user.first = "Flavio";
-		user.second.kills = 3;
-		user.second.deaths = 1;
-
-		score.insert(user);
-
-		user.first = "Porto";
-		user.second.kills = 2;
-		user.second.deaths = 0;
-
-		score.insert(user);
-
-		it_multimap = score.begin();
-		it_multimap2 = score.begin();
+	type_map users;
+	type_multimap score;
+	par user;
+	type_multimap::iterator it_multimap, it_multimap2;
+	type_map::iterator it;
 
 
-		std::cout << " ABATES \n\n\n";
 
-		for (it_multimap; it_multimap != score.end(); it_multimap++)
-		{
-			std::cout << "Name: " << it_multimap->first << "\nKills: " << it_multimap->second.kills << "\n";
-		}
+	user.first = "Allison";	 //Account
+	user.second.kills = 7;
+	user.second.deaths = 5;
 
-		std::cout << "\n\n\n MORTES \n\n\n";
+	score.insert(user);
+	users.insert(user);
 
-		for (it_multimap2; it_multimap2 != score.end(); it_multimap2++)
-		{
-			std::cout << "Name: " << it_multimap2->first << "\nDeaths: " << it_multimap2->second.deaths << "\n";
-		}
+
+	user.first = "Allan";
+	user.second.kills = 6;
+	user.second.deaths = 4;
+
+	score.insert(user);
+	users.insert(user);
+
+
+	user.first = "Anderson";
+	user.second.kills = 5;
+	user.second.deaths = 3;
+
+	score.insert(user);
+	users.insert(user);
+
+
+	user.first = "Felipe";
+	user.second.kills = 4;
+	user.second.deaths = 2;
+
+	score.insert(user);
+	users.insert(user);
+
+
+	user.first = "Flavio";
+	user.second.kills = 3;
+	user.second.deaths = 1;
+
+	score.insert(user);
+	users.insert(user);
+
+	user.first = "Porto";
+	user.second.kills = 2;
+	user.second.deaths = 0;
+
+	score.insert(user);
+	users.insert(user);
+
+	//std::sort(stackScoreKills.begin(), stackScoreKills.end());	//Order
+	//std::reverse(stackScoreKills.begin(), stackScoreKills.end()); //Inverse Order
+
+
+	//std::sort(stackScoreDeaths.begin(), stackScoreDeaths.end());	//Order
+	//std::reverse(stackScoreDeaths.begin(), stackScoreDeaths.end()); //Inverse Order
+
+
+	it_multimap = score.begin();
+	it_multimap2 = score.begin();
+
+	std::cout << " ABATES \n\n";
+
+
+	for (it_multimap; it_multimap != score.end(); it_multimap++)
+	{
+		std::cout << "Name: " << it_multimap->first << "\nKills: " << it_multimap->second.kills << "\n";
+	}
+
+	std::cout << "\n\n MORTES \n\n";
+
+	for (it_multimap2; it_multimap2 != score.end(); it_multimap2++)
+	{
+		std::cout << "Name: " << it_multimap2->first << "\nDeaths: " << it_multimap2->second.deaths << "\n";
+	}
 	
 }
 
