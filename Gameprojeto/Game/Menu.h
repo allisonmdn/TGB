@@ -1,6 +1,11 @@
 #include <iostream>
 #include "libUnicornio.h"
+#include "User.h"
 #include <stack>
+#include <string> 
+#include <unordered_map>
+#include <algorithm>
+#include <map>
 #include <string>
 #pragma once
 class Menu
@@ -22,6 +27,8 @@ public:
 
 protected:
 
+	User logReg;
+
 	BotaoSprite novoJogo;
 	BotaoSprite carregarJogo;
 	BotaoSprite ranking;
@@ -32,7 +39,7 @@ protected:
 	BotaoSprite Blogin;
 
 	// First Page
-
+	Texto text_window;
 	BotaoSprite cadastrarUsuario;
 	BotaoSprite login;
 	Sprite loginScene;

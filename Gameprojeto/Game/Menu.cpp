@@ -101,6 +101,69 @@ void Menu::loadGame_m()
 
 void Menu::ranking_m()
 {
+		typedef std::unordered_map<std::string, int> type_map;
+		typedef std::unordered_multimap<std::string, Score> type_multimap;
+		typedef std::pair<std::string, Score> par;
+
+		type_map users;
+		type_multimap score;
+		par user;
+		type_multimap::iterator it_multimap, it_multimap2;
+		type_map::iterator it;
+
+		user.first = "Allison";	 //Account
+		user.second.kills = 7;
+		user.second.deaths = 5;
+
+		score.insert(user);
+
+		user.first = "Allan";
+		user.second.kills = 6;
+		user.second.deaths = 4;
+
+		score.insert(user);
+
+		user.first = "Anderson";
+		user.second.kills = 5;
+		user.second.deaths = 3;
+
+		score.insert(user);
+
+		user.first = "Felipe";
+		user.second.kills = 4;
+		user.second.deaths = 2;
+
+		score.insert(user);
+
+		user.first = "Flavio";
+		user.second.kills = 3;
+		user.second.deaths = 1;
+
+		score.insert(user);
+
+		user.first = "Porto";
+		user.second.kills = 2;
+		user.second.deaths = 0;
+
+		score.insert(user);
+
+		it_multimap = score.begin();
+		it_multimap2 = score.begin();
+
+
+		std::cout << " ABATES \n\n\n";
+
+		for (it_multimap; it_multimap != score.end(); it_multimap++)
+		{
+			std::cout << "Name: " << it_multimap->first << "\nKills: " << it_multimap->second.kills << "\n";
+		}
+
+		std::cout << "\n\n\n MORTES \n\n\n";
+
+		for (it_multimap2; it_multimap2 != score.end(); it_multimap2++)
+		{
+			std::cout << "Name: " << it_multimap2->first << "\nDeaths: " << it_multimap2->second.deaths << "\n";
+		}
 	
 }
 
@@ -141,11 +204,11 @@ void Menu::updateMenu()
 	{
 	case MainMenu_LOG:
 
-		loginScene.desenhar(400, 300);
-
+		loginScene.desenhar(400, 300);	 
+		
 		login.desenhar();
 		login.atualizar();
-
+				
 		cadastrarUsuario.desenhar();
 		cadastrarUsuario.atualizar();
 
@@ -296,6 +359,11 @@ void Menu::updateMenu()
 		{
 			stackMenu.pop();
 		}
+		text_window.setFonte("fonte2");
+		text_window.setString("DESENVOLVEDORES\nAllison Medina\nAnderson Paim\n\nPRODUÇÃO DE ARTE\nAllison Medina\n\nARTE\nAllison Medina\n\nPROGRAMAÇÃO\nAllison Medina\nAnderson Paim");
+		text_window.setEspacamentoLinhas(1.5);
+		text_window.setAlinhamento(TEXTO_CENTRALIZADO);
+		text_window.desenhar(400, 300);
 		//RETURN
 		if (voltar.estaClicado())
 		{
@@ -350,7 +418,7 @@ void Menu::updateMenu()
 
 		loginScene.desenhar(400, 300);
 		regster.desenhar();
-
+		
 		voltar.desenhar();
 		voltar.atualizar();
 		//RETURN
