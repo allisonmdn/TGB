@@ -226,6 +226,7 @@ void Menu::updateMenu()
 
 		loginScene.desenhar(400, 300);	 
 		
+		
 		login.desenhar();
 		login.atualizar();
 				
@@ -242,12 +243,15 @@ void Menu::updateMenu()
 
 		Blogin.desenhar();
 		Blogin.atualizar();
-
+				
 		if (Blogin.estaClicado())
 		{
+			
+			//logReg.Login();
 			op = MenuState::RETURN;
 			stackMenu.push(RETURN);
 			stackMenu.top();
+			
 		}
 
 		break;
@@ -379,8 +383,8 @@ void Menu::updateMenu()
 		{
 			stackMenu.pop();
 		}
-		text_window.setFonte("fonte2");
-		text_window.setString("DESENVOLVEDORES\nAllison Medina\nAnderson Paim\n\nPRODUÇÃO DE ARTE\nAllison Medina\n\nARTE\nAllison Medina\n\nPROGRAMAÇÃO\nAllison Medina\nAnderson Paim");
+		text_window.setFonte("fonte2");		
+		text_window.setString("DEVELOPERS\nAllison Medina\nAnderson Paim\n\nART\nAllison Medina\n\nCODES\nAllison Medina\nAnderson Paim");
 		text_window.setEspacamentoLinhas(1.5);
 		text_window.setAlinhamento(TEXTO_CENTRALIZADO);
 		text_window.desenhar(400, 300);

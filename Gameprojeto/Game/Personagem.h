@@ -14,15 +14,15 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void attack();
-	virtual void walk();
-	virtual void shot();
+	virtual void walk();	
 	void setSpeed(float speed_);
 	float getSpeed();
 	Texto Texto_, text;
-	std::string TextoTeste = "Trabalho Grau B"; //Optional
+	std::string TextoTeste = "Player 1"; //Optional
 
 protected:
-	Vetor2D dir, dir2;
+	Vetor2D dir;
+	float x, y; //shot
 	Sprite spr, spr2, tiro;
 	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
 	float speed;
@@ -30,6 +30,8 @@ protected:
 	int respawn;
 	Resources_Sound Sounds;
 	Resources_Sound Theme;
-	int direcao, pontuacao, velocidade = 0;
+	int direcao = 0;
 	bool vivo = false;
+	
+	
 };

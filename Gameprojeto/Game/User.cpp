@@ -24,29 +24,41 @@ void User::Login()
 		passWord = account->password;		//Stack vector.
 		
 	}
+		
+	//std::cout << "Enter your username and password.\n";
+	//std::cout << "Username: ";
 	
-	std::cout << "Enter your username and password.\n";
-	std::cout << "Username: ";
-	std::cin >> uNameLog;
-	
+	//std::cin >> uNameLog;
+	gTeclado.inputTexto.habilitar();
+	inputTEXT.setFonte("fonte1");	
+	inputTEXT.setString("Login:");
+	inputTEXT.desenhar(400, 300); 	
+	inputTEXT.setString("");
+	if (gTeclado.soltou[TECLA_ENTER])
+	{	
+		uNameLog = gTeclado.inputTexto.getString();	 				
+		gTeclado.inputTexto.desabilitar();
+	}
+
+
 	if (uNameLog == userName)
 	{
 		std::cout << "Password: ";
 		std::cin >> passwLog;
-				
+		
 		if (passwLog == passWord)
-		{	 			
+		{						
 			std::cout << "Password correct!\n";			
 		}
 		else
 		{
+			
 			std::cout << "Password incorrect!\n";
 		}
 	}
 	else
-	{
-		std::cout << "Username incorrect! \n";
-		
+	{			
+		std::cout << "Username incorrect! \n";		
 	}
 	
 	regIn.close();
@@ -56,8 +68,8 @@ void User::Login()
 void User::Register()
 {
 	 	
-	reg.open("Register.bin", std::ios::binary);	  //Open
-		
+	reg.open("Register.bin", std::ios::binary | std::ios::app);	  //Open
+	
 	Account *account = new Account();
 	
 	do {													  //Username
@@ -65,13 +77,14 @@ void User::Register()
 		std::cin >> userName;
 		std::cout << "\n";				
 				
+
 		if (userName.length() >= 6 && userName.length() <= 12)
 		{				
 			account->username = userName;
 			break;
 		}
 		else
-		{
+		{				
 			system("cls");
 		}
 	} while (userName.length() < 6 || userName.length() > 12);
@@ -81,17 +94,18 @@ void User::Register()
 		std::cout << "\n";
 		std::cout << "Retype your password: " << std::endl;
 		std::cin >> passWordC;
+		
 		if (passWordC == passWord && passWord.length() >= 6 && passWord.length() <= 12)
 		{  			
 			
 			account->password = passWord;
 
 			StackUser.accountStack.push_back(*account);
-
+			
 			reg.write(reinterpret_cast<char *>(account), sizeof(Account));
 		}
 		else
-		{
+		{				
 			system("cls");					  
 		}
 	} while (passWordC != passWord || passWord.length() < 6 || passWord.length() > 12);		

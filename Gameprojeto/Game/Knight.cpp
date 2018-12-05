@@ -1,17 +1,13 @@
-#include "Warrior.h"
+#include "Knight.h"
 
 
 
-Warrior::Warrior()
+Knight::Knight()
 {
-	Personagem::Personagem();
+	
 }
 
 
-Warrior::~Warrior()
+Knight::~Knight()
 {
-}
-void Warrior::Update1()
-{
-	update();
 }

@@ -5,6 +5,8 @@
 #include <algorithm>
 #include "Account.h"
 #include "StackAccounts.h"
+#include "Texto.h"
+#include "libUnicornio.h"
 
 #pragma once
 class User
@@ -20,6 +22,7 @@ protected:
 	std::string uNameLog, passwLog;
 	std::ofstream reg;
 	std::ifstream regIn;
+	Texto inputTEXT;
 	StackAccounts StackUser;
 	
 	

@@ -3,8 +3,7 @@
 
 Personagem::Personagem()
 { 
-
-
+	
 	srand(time(0));
 	respawn = rand() % 3 + 1; //Between 1 and 3 to randomly respawn (Tiled Obj. Pos.).
 
@@ -36,8 +35,8 @@ Personagem::Personagem()
 			
 
 	
-	dir2.x = dir.x;
-	dir2.y = dir.y;
+	x = dir.x;
+	y = dir.y;
 }
 
 
@@ -51,7 +50,7 @@ void Personagem::setSpriteSheet(std::string sSprite)
 
 	spr.setSpriteSheet(sSprite);//Set spr to get variable type string
 	setSprite(&spr);
-	tiro.setSpriteSheet("tiro");
+	
 
 }
 
@@ -59,7 +58,7 @@ void Personagem::draw()	//Draws using the variable as condition.
 {
 	
 
-	Texto_.setFonte("fonte1");
+	Texto_.setFonte("fonte1"); 	
 	Texto_.setString(TextoTeste);
 	Texto_.setAlinhamento(TEXTO_CENTRALIZADO);
 	Texto_.setEspacamentoLinhas(1.5f);
@@ -80,16 +79,24 @@ void Personagem::draw()	//Draws using the variable as condition.
 
 	hB_Fundo.setSpriteSheet("FundoBarra");
 	hB_Fundo.desenhar(dir.x, (dir.y - 25));
-
-	hB_Points.setSpriteSheet("HpPointsPixel");
+		
+	hB_Points.setSpriteSheet("HpPointsPixel");	
 	hB_Points.desenhar(dir.x, (dir.y - 25));
+
+	
 
 	hB_brilho.setSpriteSheet("BrilhoBarra");
 	hB_brilho.desenhar(dir.x, (dir.y - 25));
 
+	if (gTeclado.soltou[TECLA_ESPACO])
+	{	
+		
+	    hB_Points.setEscala(-1, 0);
+				
+	}
 	       //END
 
-//Draw with Vetor2D type.
+
 	this->Texto_.desenhar(150, 40);
 	this->text.desenhar(dir.x, (dir.y - 35)); //Player text on person.
 
@@ -105,20 +112,21 @@ void Personagem::update()
 {
 	attack();
 	walk();
-	shot();
-
+		 	
 	
 		if (vivo == false)
 		{
-			dir2.x = dir.x;
-			dir2.y = dir.y;
-		}
-
+			x = dir.x;
+			y = dir.y;
+		}	
 }
 void Personagem::attack()
 {
+	if (gTeclado.soltou[TECLA_ESPACO])
+	{
+		Sounds.setEffectSong("attack");
+	}
 	
-
 }
 void Personagem::walk()
 {	  
@@ -155,71 +163,24 @@ void Personagem::walk()
 		spr.setAnimacao(0, false);
 		//y + 1;  
 	}
-
 	else
 	{
 		this->dir.set(dir.x, dir.y);
-		this->dir2.set(dir.x, dir.y);
+		this->x = dir.x;
+		this->y = dir.y;
 		spr.recomecarAnimacao();
-	}
-
+	} 
 	spr.avancarAnimacao();
-
-
+	
 }
 
-void Personagem::shot()
-{
-	if (gTeclado.pressionou[TECLA_ESPACO] && vivo == false)
-	{
-		vivo = true;
-
-
-		while (vivo == true) {
-
-			if (direcao == 2)
-			{
-				tiro.desenhar(dir2.x, dir2.y);
-				dir2.x += 1;	 //+
-			}
-
-			if (direcao == 1)
-			{
-				tiro.desenhar(dir2.x, dir2.y);
-				dir2.x -= 1;	  //-
-			}
-
-			if (direcao == 3)
-			{
-				tiro.desenhar(dir2.x, dir2.y);
-				dir2.y -= 1; //-
-			}
-
-			if (direcao == 0)
-			{
-				tiro.desenhar(dir2.x, dir2.y);
-				dir2.y += 1; //+
-				
-			}	   
-
-			if (dir2.x < tiro.getLargura() || dir2.x > gJanela.getLargura() + tiro.getLargura())
-			{
-				vivo = false;
-			}
-			if (dir2.y < tiro.getAltura() || dir2.y > gJanela.getAltura() + tiro.getLargura())
-			{
-				vivo = false;  
-			}	   		
-		} 		
-		Sounds.setEffectSong("hit"); 
-	}
-}
 
 void Personagem::setSpeed(float speed_)
 {
 	speed = speed_;
+	
 	speed = 1;
-
+		
 	spr.setVelocidadeAnimacao(speed);
 }
 float Personagem::getSpeed()

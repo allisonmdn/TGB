@@ -101,6 +101,14 @@
         }],
  "nextobjectid":4,
  "orientation":"orthogonal",
+ "properties":
+    {
+     "config":"\"assets\/tilemaps\/tilesets\/campo_config.txt\""
+    },
+ "propertytypes":
+    {
+     "config":"string"
+    },
  "renderorder":"right-down",
  "tiledversion":"1.1.4",
  "tileheight":32,

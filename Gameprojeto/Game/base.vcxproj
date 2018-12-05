@@ -101,27 +101,33 @@
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="PersonStatus.cpp" />
     <ClCompile Include="Resources_Sound.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Selecao.cpp" />
     <ClCompile Include="StackAccounts.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="User.cpp" />
-    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Knight.h" />
     <ClInclude Include="Mage.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="PersonStatus.h" />
     <ClInclude Include="Resources_Sound.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="Selecao.h" />
     <ClInclude Include="StackAccounts.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="User.h" />
-    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

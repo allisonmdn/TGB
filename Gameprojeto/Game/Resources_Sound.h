@@ -6,12 +6,10 @@ class Resources_Sound : public ObjetoTileMap
 {
 public:
 	Resources_Sound();
-	~Resources_Sound();
+	virtual ~Resources_Sound();
 	void setThemeSong(std::string Theme_s);
 	void setEffectSong(std::string Effect_s);
 	bool LoadSongs();
 
-protected:
-	Som Effect;
 };
 

@@ -9,9 +9,11 @@ Resources_Sound::Resources_Sound()
 
 Resources_Sound::~Resources_Sound()
 {
+
 }
 void Resources_Sound::setThemeSong(std::string Theme_s)
 {		
+	
 	gMusica.tocar(Theme_s, true, 0, 0);
 
 	if (!gRecursos.carregouMusica(Theme_s))
@@ -22,10 +24,9 @@ void Resources_Sound::setThemeSong(std::string Theme_s)
 
 void Resources_Sound::setEffectSong(std::string Effect_s)
 {
-	
-	Effect.setAudio(Effect_s);
-	Effect.tocar(false);	
-
+			
+	gAudios.tocar(Effect_s, 50);
+										  
 	if (!gRecursos.carregouAudio(Effect_s))
 	{
 		gDebug.erro("Error in loading audio");
@@ -40,6 +41,7 @@ bool Resources_Sound::LoadSongs()
 
 	//Effects
 
+	gRecursos.carregarAudio("attack", "assets/sounds/Attack.wav");
 	gRecursos.carregarAudio("explosion", "assets/sounds/Explosion.wav");
 	gRecursos.carregarAudio("hit", "assets/sounds/Hit.wav");
 	gRecursos.carregarAudio("hurt", "assets/sounds/Hurt.wav");
