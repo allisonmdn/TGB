@@ -1,7 +1,7 @@
 #include <iostream>
 #include "libUnicornio.h"
 #include <time.h>
-#include "Resources_Sound.h"
+#include "Resources_Sound.h"  
 
 
 #pragma once
@@ -14,7 +14,9 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void attack();
-	virtual void walk();	
+	virtual void walk();
+	float getX();
+	float getY();
 	void setSpeed(float speed_);
 	float getSpeed();
 	Texto Texto_, text;
@@ -26,12 +28,13 @@ protected:
 	Sprite spr, spr2, tiro;
 	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
 	float speed;
-	//int width, height; //Screen coordinates
+	int width, height; //Screen coordinates
 	int respawn;
 	Resources_Sound Sounds;
 	Resources_Sound Theme;
 	int direcao = 0;
 	bool vivo = false;
+
 	
 	
 };

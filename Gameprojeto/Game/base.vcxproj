@@ -65,6 +65,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,6 +74,9 @@
       <AdditionalLibraryDirectories>..\..\libUnicornio\lib\win\x86;..\..\libUnicornio\dep\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libUnicornio_d.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -109,7 +113,6 @@
     <ClCompile Include="PersonStatus.cpp" />
     <ClCompile Include="Resources_Sound.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Selecao.cpp" />
     <ClCompile Include="StackAccounts.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="User.cpp" />
@@ -124,7 +127,6 @@
     <ClInclude Include="PersonStatus.h" />
     <ClInclude Include="Resources_Sound.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="Selecao.h" />
     <ClInclude Include="StackAccounts.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="User.h" />

@@ -25,15 +25,7 @@ Personagem::Personagem()
 		this->dir.y = 96;
 		//Pos3 
 	}
-
-	//Respawn free of pos. in obj. layer.
-
-	/*this->width = 800;
-	this->height = 600;
-	this->x = rand() % width; //Variable "x" and "y" to randomly respawn.
-	this->y = rand() % height;*/
-			
-
+   	 
 	
 	x = dir.x;
 	y = dir.y;
@@ -58,35 +50,37 @@ void Personagem::draw()	//Draws using the variable as condition.
 {
 	
 
-	Texto_.setFonte("fonte1"); 	
+	Texto_.setFonte("fonte profile");
+	Texto_.setCor(0, 0, 0, true);
 	Texto_.setString(TextoTeste);
-	Texto_.setAlinhamento(TEXTO_CENTRALIZADO);
+	Texto_.setAlinhamento(TEXTO_ALINHADO_A_ESQUERDA);
 	Texto_.setEspacamentoLinhas(1.5f);
 
 	text.setFonte("fonte2");
-	text.setString("Player");
+	text.setString("Username P1");	
+	text.setCor(0, 0, 0, true);
 	text.setAlinhamento(TEXTO_CENTRALIZADO);
 	text.setEspacamentoLinhas(1.5f);
 
-	this->spr.desenhar(dir.x, dir.y);
+	this->spr.desenhar(getX(), getY());
 	
 	//HpBar
 
 	        //BEGIN
 
 	healthBar_Borda.setSpriteSheet("Borda");
-	healthBar_Borda.desenhar(dir.x, (dir.y - 25));
+	healthBar_Borda.desenhar(getX(), (getY() - 25));
 
 	hB_Fundo.setSpriteSheet("FundoBarra");
 	hB_Fundo.desenhar(dir.x, (dir.y - 25));
 		
 	hB_Points.setSpriteSheet("HpPointsPixel");	
-	hB_Points.desenhar(dir.x, (dir.y - 25));
+	hB_Points.desenhar(getX(), (getY() - 25));
 
 	
 
 	hB_brilho.setSpriteSheet("BrilhoBarra");
-	hB_brilho.desenhar(dir.x, (dir.y - 25));
+	hB_brilho.desenhar(getX(), (getY() - 25));
 
 	if (gTeclado.soltou[TECLA_ESPACO])
 	{	
@@ -97,8 +91,8 @@ void Personagem::draw()	//Draws using the variable as condition.
 	       //END
 
 
-	this->Texto_.desenhar(150, 40);
-	this->text.desenhar(dir.x, (dir.y - 35)); //Player text on person.
+	this->Texto_.desenhar(50, 40);
+	this->text.desenhar(getX(), (getY() - 35)); //Player text on person.
 
 
 	
@@ -111,13 +105,12 @@ void Personagem::draw()	//Draws using the variable as condition.
 void Personagem::update()
 {
 	attack();
-	walk();
-		 	
+	walk();			 	
 	
 		if (vivo == false)
 		{
-			x = dir.x;
-			y = dir.y;
+			x = getX();
+			y = getY();
 		}	
 }
 void Personagem::attack()
@@ -165,13 +158,23 @@ void Personagem::walk()
 	}
 	else
 	{
-		this->dir.set(dir.x, dir.y);
+		this->dir.set(getX(), getY());
 		this->x = dir.x;
 		this->y = dir.y;
 		spr.recomecarAnimacao();
 	} 
-	spr.avancarAnimacao();
+	spr.avancarAnimacao(); 		
 	
+}
+
+float Personagem::getX()
+{
+	return dir.x;
+}
+
+float Personagem::getY()
+{
+	return dir.y;
 }
 
 

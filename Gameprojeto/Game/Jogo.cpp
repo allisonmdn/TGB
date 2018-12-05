@@ -31,18 +31,21 @@ void Jogo::inicializar()
 		inORout.close();
 	}*/
 	
+		
 	//Maps
 
 	menuz.LoadMenu();
 
-	//mapa.carregar("assets/tilemaps/mapa.json");
-	//mapa2.carregar("assets/tilemaps/mapa2.json");
-	selec.SelecMap();
+	mapa.carregar("assets/tilemaps/mapa.json");
+	mapa2.carregar("assets/tilemaps/mapa2.json");
+	
 
 	//Text
 
 	gRecursos.carregarFonte("fonte1", "assets/fonts/minecraft.ttf", 32);
 	gRecursos.carregarFonte("fonte2", "assets/fonts/minecraft.ttf", 16);
+	gRecursos.carregarFonte("fonte profile", "assets/fonts/minecraft.ttf", 16, FONTE_ESTILO_NEGRITO);
+	
 
 	//SpriteSheets Person
 
@@ -58,9 +61,10 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("HpPointsPixel", "assets/spritesheets/HealthBar/HpPointsPixel.png", 1, 1);
 	gRecursos.carregarSpriteSheet("HpPointsPixel2", "assets/spritesheets/HealthBar/HpPointsPixel2.png", 1, 1);
 	gRecursos.carregarSpriteSheet("tiro", "assets/spritesheets/shot/tiro.png", 1, 1);
-	gRecursos.carregarSpriteSheet("treasure_box_sheet", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
-
-	treasure.setSpriteSheet("treasure_box_sheet");
+	gRecursos.carregarSpriteSheet("Treasure Box", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
+		
+	treasure.setSpriteSheet("Treasure Box");
+	
 		
 	//Sounds
 	LoadS.LoadSongs(); // Load Songs.
@@ -71,7 +75,7 @@ void Jogo::inicializar()
 	// Knight
 	Class[0] = new Knight();
 	Class[0]->setSpriteSheet("knight");
-	text.setFonte("fonte1");
+	text.setFonte("fonte profile");
 	text.setString("class: Knight");
 
 	text.setAlinhamento(TEXTO_CENTRALIZADO);
@@ -88,13 +92,12 @@ void Jogo::inicializar()
 	Class[2] = new Thief();
 	Class[2]->setSpriteSheet("thief");
 
-	//ObjetoTileMap * ObjPos, * ObjPos2;
-	//ObjPos = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos1"); //ObjPos = map getLayerOfObjects("string") and point to getObject("string");
-	//ObjPos2 = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos1");
-		
+	ObjetoTileMap * ObjPos;
+	ObjPos = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos1"); //ObjPos = map getLayerOfObjects("string") and point to getObject("string");
+				
 
-	//Class[0]->setPosCentro(ObjPos->getPosCentro());	// Character type pointer indicate to set position in center (ObjPos point to get position in center).
-		
+	Class[sChar()]->setPosCentro(ObjPos->getPosCentro());	// Character type pointer indicate to set position in center (ObjPos point to get position in center).
+
 	
 	//Map1
 	//Ground4 and Ground5 collision layers.
@@ -117,60 +120,67 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
-	int x = 0;
+	int Tempo;
+	
 
+	t_x = rand() % width;
+	t_y = rand() % height;
+
+	gTempo.inicializar();
+	
 	while (!gTeclado.soltou[TECLA_ESC] && !gEventos.sair && !menuz.Exit_m() == true)
 	{
 		uniIniciarFrame();	 
 
-		//Change Map 
-
-		//if (x >= 0 && x <= 1)
-		//{
-			//mapa2.desenhar();  			
-		//}
-		//else
-		//{
-		//	mapa2.desenhar();
-		//}
-
-		selec.drawMap();
-
+		mapa2.desenhar();
+									 		
+		Tempo = 60 * gTempo.getDeltaTempo();
+		
 
 		//Switch Character.
-
-		if (gTeclado.soltou[TECLA_1])
-		{
-			x = 0;
-			text.setString("class: Knight");
-			
-		}
-
-		if (gTeclado.soltou[TECLA_2])
-		{
-			x = 1;
-			text.setString("class: Mage");
-			
-		}
-
-		if (gTeclado.soltou[TECLA_3])
-		{
-			x = 2;
-			text.setString("class: Thief");		
-
-		}
 		
+			sChar();
+
+						
+		Collisions();
+		
+		treasure.desenhar(t_x, t_y);		
+			
 
 		//Person
 
-		Class[x]->draw();
-		Class[x]->update();			
-		text.desenhar(100, 80); // Class name.
+		Class[sChar()]->draw();
+		Class[sChar()]->update();
+
+			  			  
+		text.desenhar(150, 40); // Class name.
+
+		
 
 		//Button
 
-		Btn.desenhar(780, 10);
+		//Btn.desenhar(780, 10);
+		Btn.setX(780);
+		Btn.setY(10);
+		Btn.atualizar();
+		Btn.desenhar();
+				
+		
+		if (Btn.estaClicado() && !Btn.estaAbaixado())
+		{				 			
+			Btn.setAnimacaoDoEstado(BOTAOSPRITE_ABAIXADO, 1);
+			gMusica.setVolumeGlobal(0);
+			gAudios.setVolumeGlobal(0);			
+		}
+		if (Btn.estaClicado() && Btn.estaAbaixado())
+		{	  			
+			Btn.setAnimacaoDoEstado(BOTAOSPRITE_NORMAL, 0);  			
+			gMusica.setVolumeGlobal(50);
+			gAudios.setVolumeGlobal(50);						
+		}		
+		
 
+		/*
 		if (gMouse.soltou[BOTAO_MOUSE_ESQ]) //Muted.
 		{
 			Btn.setAnimacao(1, false);
@@ -183,7 +193,7 @@ void Jogo::executar()
 			Btn.setAnimacao(0, false);
 			Btn.avancarAnimacao();
 			gMusica.setVolumeGlobal(70);
-		}
+		}*/
 
 		menuz.updateMenu();
 		
@@ -191,4 +201,54 @@ void Jogo::executar()
 
 		uniTerminarFrame();
 	}
+}
+
+void Jogo::Collisions()
+{
+	
+	bool treasure_b = Collision_Treasure();
+
+	  	
+	
+}
+
+bool Jogo::Collision_Treasure()
+{
+	
+
+	if (mapa.existeObjetoDoTipoNaPos("Treasure Box", Class[sChar()]->getX(), Class[sChar()]->getY()))
+	{
+		
+
+		uniTestarColisaoPontoComSprite(Class[sChar()]->getX(), Class[sChar()]->getY(), treasure, t_x, t_y, 0);
+		
+
+		return true;
+	}
+
+	return false;
+	
+}
+
+int Jogo::sChar()
+{
+	if (gTeclado.soltou[TECLA_1])
+	{
+		x_char = 0;
+		text.setString("class: Knight");
+	}
+
+	if (gTeclado.soltou[TECLA_2])
+	{
+		x_char = 1;
+		text.setString("class: Mage");
+	}
+
+	if (gTeclado.soltou[TECLA_3])
+	{
+		x_char = 2;
+		text.setString("class: Thief");
+	}
+
+	return x_char;
 }

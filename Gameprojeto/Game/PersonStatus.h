@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Personagem.h"
-#include "Knight.h"
-#include "Thief.h"
-#include "Mage.h"
+
 
 class PersonStatus
 {
