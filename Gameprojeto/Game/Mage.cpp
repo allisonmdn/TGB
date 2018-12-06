@@ -17,10 +17,35 @@ void Mage::attack()
 	{
 		vivo = true;
 
-		tiro.setSpriteSheet("tiro");
-		
+		tiro.setSpriteSheet("skull");
+				
 
 		while (vivo == true) {
+
+
+			if (direcao == 2 && gTeclado.soltou[TECLA_ESPACO])
+			{
+				spr.setFrame(2);
+				spr.getFrame();
+			}
+			if (direcao == 1 && gTeclado.soltou[TECLA_ESPACO])
+			{
+				spr.setFrame(1);
+				spr.getFrame();
+
+			}
+			if (direcao == 3 && gTeclado.soltou[TECLA_ESPACO])
+			{
+				spr.setFrame(3);
+				spr.getFrame();
+
+			}
+			if (direcao == 0 && gTeclado.soltou[TECLA_ESPACO])
+			{
+				spr.setFrame(0);
+				spr.getFrame();
+
+			}
 
 			if (direcao == 2)
 			{
@@ -37,7 +62,7 @@ void Mage::attack()
 
 			if (direcao == 3)
 			{
-				tiro.desenhar(x, y);
+				tiro.desenhar(x, y,direcao);
 				y -= 1;// y-
 
 			}

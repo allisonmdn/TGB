@@ -244,9 +244,15 @@ void Personagem2::draw()	//Draws using the variable as condition.
 }
 void Personagem2::attack()
 {
+	
+
 	if (gTeclado.soltou[TECLA_CTRL_DIR])
 	{
+		
+		
 		Sounds.setEffectSong("attack");
+
+		
 	}
 
 }
@@ -273,6 +279,7 @@ void Personagem2::walk()
 	{
 		//Right
 		mx += 2;
+		direcao = 2;
 		spr2.setAnimacao(2, false);
 		//x + 1;
 	}
@@ -280,6 +287,7 @@ void Personagem2::walk()
 	{
 		//Left
 		mx -= 2;
+		direcao = 1;
 		spr2.setAnimacao(1, false);
 		//x - 1;
 	}
@@ -287,6 +295,7 @@ void Personagem2::walk()
 	{
 		//Up
 		my -= 2;
+		direcao = 3;
 		spr2.setAnimacao(3, false);
 		//y - 1;
 	}
@@ -294,6 +303,7 @@ void Personagem2::walk()
 	{
 		//Down		
 		my += 2;
+		direcao = 0;
 		spr2.setAnimacao(0, false);
 		//y + 1;  
 	}

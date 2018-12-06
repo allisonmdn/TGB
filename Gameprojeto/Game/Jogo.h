@@ -37,7 +37,7 @@ private:
 	//fstream inORout;
 	//ofstream outs;
 	//ifstream ins;
-	Sprite treasure;
+	Sprite treasure, potions;
 	BotaoSprite Btn;
 	Resources_Sound LoadS;
 	Menu menuz;

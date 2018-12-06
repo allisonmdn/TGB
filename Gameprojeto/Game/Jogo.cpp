@@ -70,9 +70,21 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("HpPointsPixel2", "assets/spritesheets/HealthBar/HpPointsPixel2.png", 1, 1);
 	gRecursos.carregarSpriteSheet("tiro", "assets/spritesheets/shot/tiro.png", 1, 1);
 	gRecursos.carregarSpriteSheet("tiro2", "assets/spritesheets/shot/tiro.png", 1, 1);
+	gRecursos.carregarSpriteSheet("skull", "assets/spritesheets/shot/Skull.png", 1, 1);
 	gRecursos.carregarSpriteSheet("Treasure Box", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
+	gRecursos.carregarSpriteSheet("Rock", "assets/spritesheets/shot/Rock.png", 3, 1);
+	gRecursos.carregarSpriteSheet("Potion_HP", "assets/spritesheets/Powerups/Potion.png", 1, 1);
+
+	//ATK SPRITE
+	gRecursos.carregarSpriteSheet("thief1", "assets/spritesheets/Thief1.png", 4, 2);
+	gRecursos.carregarSpriteSheet("mage1", "assets/spritesheets/Mage1.png", 4, 2);
+	gRecursos.carregarSpriteSheet("knight1", "assets/spritesheets/Knight1.png", 4, 2);
+
+
+
 		
 	treasure.setSpriteSheet("Treasure Box");
+	potions.setSpriteSheet("Potion_HP");
 	
 		
 	//Sounds
@@ -169,6 +181,7 @@ void Jogo::executar()
 
 		//TREASURE BOX
 
+		
 
 		time++;
 
@@ -260,7 +273,8 @@ bool Jogo::Collision_Treasure()
 		treasure.avancarAnimacao();
 		treasure.setAnimacao(2);
 		treasure.avancarAnimacao();
-		treasure.terminouAnimacao(); 				
+		treasure.terminouAnimacao();
+
 
 		return true;				 
 	}
