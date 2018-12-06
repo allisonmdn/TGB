@@ -24,7 +24,7 @@ public:
 	void credits_m();
 	void options_m();
 	bool Exit_m();
-
+	
 
 protected:
 
@@ -40,15 +40,14 @@ protected:
 	BotaoSprite Blogin;
 
 	// First Page
-	Texto text_window;
+	Texto text_window, text_back;
 	BotaoSprite cadastrarUsuario;
 	BotaoSprite login;
 	Sprite loginScene;
 	int op = 0;
 	int sizeStack; // Size of stack
-	bool ext = false;
-
+	bool ext = false; 	
 	std::stack<int> stackMenu;
-	
+		
 };
 

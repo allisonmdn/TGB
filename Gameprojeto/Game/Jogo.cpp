@@ -198,8 +198,6 @@ void Jogo::executar()
 		}*/
 
 		menuz.updateMenu();
-		
-
 
 		uniTerminarFrame();
 	}
@@ -212,11 +210,11 @@ void Jogo::Collisions()
 }
 
 bool Jogo::Collision_Treasure()
-{
-	
+{		  
 
 	if (uniTestarColisaoPontoComSprite(t_x, t_y, treasure, P1[sChar()]->getX(), P1[sChar()]->getY(), 0))
-	{	 		
+	{			
+		
 		treasure.setAnimacao(1);
 		treasure.avancarAnimacao();
 		treasure.setAnimacao(2);

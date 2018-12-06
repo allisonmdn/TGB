@@ -67,11 +67,11 @@ void Menu::LoadMenu()
 	//COORDINATES OK.
 
 	//First Window]
-	cadastrarUsuario.setX(383);
-	cadastrarUsuario.setY(450);
+	cadastrarUsuario.setX(390);
+	cadastrarUsuario.setY(550);
 
 	regster.setX(400);
-	regster.setY(350);
+	regster.setY(300);
 
 	login.setX(400);
 	login.setY(350);
@@ -229,7 +229,10 @@ void Menu::updateMenu()
 		
 		login.desenhar();
 		login.atualizar();
-				
+		
+		cadastrarUsuario.setX(390);
+		cadastrarUsuario.setY(450);
+
 		cadastrarUsuario.desenhar();
 		cadastrarUsuario.atualizar();
 
@@ -383,6 +386,8 @@ void Menu::updateMenu()
 		{
 			stackMenu.pop();
 		}
+		
+		gGraficos.desenharRetangulo(150,70, 0, 500, 450, 0, 0, 0, 0, 0, 128, true);
 		text_window.setFonte("fonte2");		
 		text_window.setString("DEVELOPERS\nAllison Medina\nAnderson Paim\n\nART\nAllison Medina\n\nCODES\nAllison Medina\nAnderson Paim");
 		text_window.setEspacamentoLinhas(1.5);
@@ -421,8 +426,26 @@ void Menu::updateMenu()
 	
 	case REGISTER:
 
-		loginScene.desenhar(400, 300);
+		loginScene.desenhar(400, 300);  		
+		
 		regster.desenhar();
+
+		cadastrarUsuario.setX(650);
+		cadastrarUsuario.setY(520);
+
+		cadastrarUsuario.desenhar();
+		cadastrarUsuario.atualizar();
+
+		logReg.Register();
+
+		//REGISTERED
+
+		if (cadastrarUsuario.estaClicado())
+		{
+			op = MenuState::MainMenu_LOG;
+			stackMenu.push(op);
+			stackMenu.top(); 
+		}
 		
 		voltar.desenhar();
 		voltar.atualizar();

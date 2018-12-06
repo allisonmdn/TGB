@@ -4,7 +4,7 @@
 
 User::User()
 {
-		
+   
 }
 
 
@@ -65,13 +65,183 @@ void User::Login()
 	
 }
 
+void User::Organize()
+{
+
+	
+	//		Apagar o texto com tecla voltar ou delete
+	if (gTeclado.pressionou[TECLA_VOLTAR])
+	{
+		gTeclado.inputTexto.apagar();
+	}
+	if (gTeclado.pressionou[TECLA_DELETE])
+	{
+		if (gTeclado.inputTexto.getTamanhoSelecao() != 0)
+			gTeclado.inputTexto.apagar();
+		else if (gTeclado.inputTexto.getPosCursor() < gTeclado.inputTexto.getString().size())
+		{
+			gTeclado.inputTexto.moverPosCursorParaDir();
+			gTeclado.inputTexto.apagar();
+		}
+	}
+
+	//		Mover a seleção do texto
+	if (gTeclado.segurando[TECLA_SHIFT_ESQ])
+	{
+		if (gTeclado.pressionou[TECLA_ESQ])
+		{
+			gTeclado.inputTexto.moverSelecaoParaEsq();
+		}
+		if (gTeclado.pressionou[TECLA_DIR])
+		{
+			gTeclado.inputTexto.moverSelecaoParaDir();
+		}
+		if (gTeclado.pressionou[TECLA_HOME])
+		{
+			gTeclado.inputTexto.moverSelecaoParaInicio();
+		}
+		if (gTeclado.pressionou[TECLA_END])
+		{
+			gTeclado.inputTexto.moverSelecaoParaFim();
+		}
+	}
+	//		Mover o cursor do texto
+	else
+	{
+		if (gTeclado.pressionou[TECLA_ESQ])
+		{
+			gTeclado.inputTexto.moverPosCursorParaEsq();
+		}
+		if (gTeclado.pressionou[TECLA_DIR])
+		{
+			gTeclado.inputTexto.moverPosCursorParaDir();
+		}
+		if (gTeclado.pressionou[TECLA_HOME])
+		{
+			gTeclado.inputTexto.moverPosCursorParaInicio();
+		}
+		if (gTeclado.pressionou[TECLA_END])
+		{
+			gTeclado.inputTexto.moverPosCursorParaFim();
+		}
+	}
+
+	//	3) Passar a string do input para o texto
+	txt.setString(gTeclado.inputTexto.getString());
+}
+
 void User::Register()
 {
 	 	
 	reg.open("Register.bin", std::ios::binary | std::ios::app);	  //Open
+
+																  //Account *account = new Account();
+
+	typedef std::unordered_map<std::string, std::string> type_map;
+	typedef std::unordered_multimap<std::string, std::string> type_multimap;
+	typedef std::pair<std::string, std::string> par;
+
+	type_map users;
+	par user;
+	type_multimap::iterator it_multimap, it_multimap2;
+	type_map::iterator it;
+
+	user.first = "";
+	user.second = "";
+
+	if (!reg.is_open())
+	{
+		gDebug.erro("Arquivo de registro não está aberto");
+	}
+	else
+	{
+		Organize();
+		
+		gTeclado.inputTexto.habilitar();
+
+		inputTEXT.setFonte("fonte1");
+		inputTEXT.setString("");
+
+		inputTEXT.desenhar(400, 300);
+
+
+		if (gTeclado.pressionou[TECLA_ENTER])
+		{
+
+			if (user.first.empty())
+			{
+				user.first = gTeclado.inputTexto.getString();//Account
+
+				gDebug.depurar("login: ", user.first);
+
+				gTeclado.inputTexto.desabilitar();
+			}
+			else
+			{
+
+				do {
+
+
+					if (!gTeclado.inputTexto.estaHabilitado())
+					{
+						gTeclado.inputTexto.habilitar();
+
+						inputTEXT.setString(user.second);
+
+						inputTEXT.desenhar(400, 400);
+
+						if (user.second.empty())
+						{
+							user.second = gTeclado.inputTexto.getString();
+
+							gDebug.depurar("password: ", user.first);
+
+							gTeclado.inputTexto.desabilitar();
+						}
+						else
+						{
+
+							if (!gTeclado.inputTexto.estaHabilitado() && passwLog.empty())
+							{
+								gTeclado.inputTexto.habilitar();
+
+								passwLog = gTeclado.inputTexto.getString();
+
+								gDebug.depurar("re-type password", passwLog);
+
+								if (passwLog == user.second)
+								{
+									user.second = passwLog;
+
+									gDebug.depurar("password correct:", user.second);
+
+									users.insert(user);
+
+									reg << user.first << "\n" << user.second;
+
+									gTeclado.inputTexto.desabilitar();
+								}
+								else
+								{
+									std::string teste3 = "PASSWORD INCORRECT";
+									gGraficos.desenharTexto(teste3, 400, 300, 92, 51, 23, 255, 0, 0);
+									gTeclado.inputTexto.desabilitar();
+								}
+
+							}
+
+						}
+					}
+				} while (passwLog != user.second);
+			}
+			
+			
+		}
+				
+	}
 	
-	Account *account = new Account();
-	
+
+	/*
 	do {													  //Username
 		std::cout << "Register your username: " << std::endl;
 		std::cin >> userName;
@@ -112,6 +282,7 @@ void User::Register()
 	
 	//us.close();   //Close
 	//pass.close();
+	*/
 	reg.close();
 }
 
