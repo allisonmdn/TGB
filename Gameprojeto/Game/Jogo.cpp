@@ -1,5 +1,6 @@
 #include "Jogo.h"
 
+
 Jogo::Jogo()
 {
 
@@ -40,7 +41,10 @@ void Jogo::inicializar()
 	mapa2.carregar("assets/tilemaps/mapa2.json");
 
 	//ATRIBUTTES
-		
+	
+	//TIME
+
+	time = 0;
 	
 
 	//Text
@@ -65,6 +69,7 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("HpPointsPixel", "assets/spritesheets/HealthBar/HpPointsPixel.png", 1, 1);
 	gRecursos.carregarSpriteSheet("HpPointsPixel2", "assets/spritesheets/HealthBar/HpPointsPixel2.png", 1, 1);
 	gRecursos.carregarSpriteSheet("tiro", "assets/spritesheets/shot/tiro.png", 1, 1);
+	gRecursos.carregarSpriteSheet("tiro2", "assets/spritesheets/shot/tiro.png", 1, 1);
 	gRecursos.carregarSpriteSheet("Treasure Box", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
 		
 	treasure.setSpriteSheet("Treasure Box");
@@ -74,35 +79,52 @@ void Jogo::inicializar()
 	LoadS.LoadSongs(); // Load Songs.
 	Btn.setSpriteSheet("sound");
 	
-	Theme.setThemeSong("Kings_Feast");
+	LoadS.setThemeSong("Kings_Feast");
 
 	// Knight
 	P1[0] = new Knight();
 	P1[0]->setSpriteSheet("knight");
-	text.setFonte("fonte profile");
-	text.setString("class: Knight");
+	P2[0] = new Knight2();
+	P2[0]->setSpriteSheet("knight");
 
-	text.setAlinhamento(TEXTO_CENTRALIZADO);
+	TX.text.setFonte("fonte profile");
+	TX.text.setString("class: Knight");
 
-	text.setEspacamentoLinhas(1.5f);
+	TX.text.setAlinhamento(TEXTO_CENTRALIZADO);
+
+	TX.text.setEspacamentoLinhas(1.5f);
+
+	TX2.text.setFonte("fonte profile");
+	TX2.text.setString("class: Knight");
+
+	TX2.text.setAlinhamento(TEXTO_CENTRALIZADO);
+
+	TX2.text.setEspacamentoLinhas(1.5f);
 
 	// Mage
 
 	P1[1] = new Mage();
 	P1[1]->setSpriteSheet("mage");
+	
+	P2[1] = new Mage2();
+	P2[1]->setSpriteSheet("mage");
 
 	// Thief
 
 	P1[2] = new Thief();
 	P1[2]->setSpriteSheet("thief");
+	P2[2] = new Thief2();
+	P2[2]->setSpriteSheet("thief");
 
-	ObjetoTileMap * ObjPos;
+	ObjetoTileMap *ObjPos, *ObjPos2;
 	ObjPos = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos1"); //ObjPos = map getLayerOfObjects("string") and point to getObject("string");
+	ObjPos2 = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos2");
 				
 
 	P1[sChar()]->setPosCentro(ObjPos->getPosCentro());	// Character type pointer indicate to set position in center (ObjPos point to get position in center).
+	P2[sChar()]->setPosCentro(ObjPos2->getPosCentro());
 
-	
+
 	//Map1
 	//Ground4 and Ground5 collision layers.
 	//Ground5 nv2.
@@ -146,6 +168,22 @@ void Jogo::executar()
 		Collisions();
 
 		//TREASURE BOX
+
+
+		time++;
+
+		time = time / 1000;
+
+		gDebug.depurar("Time: ", time);
+
+		//TESTE TEMPO 3600 == 1 MIN
+		if ((time / 1000) == 1)
+		{
+			t_x = rand() % width;
+			t_y = rand() % height;
+			treasure.setAnimacao(0);
+		}
+
 		
 		treasure.desenhar(t_x, t_y);		
 			
@@ -154,9 +192,12 @@ void Jogo::executar()
 
 		P1[sChar()]->draw();
 		P1[sChar()]->update();
+		P2[sChar()]->draw();
+		P2[sChar()]->update();
 
 			  			  
-		text.desenhar(150, 40); // Class name.
+		TX.text.desenhar(150, 40); // Class name.
+		TX2.text.desenhar(650, 40); // Class name.
 				
 
 		//Button SOUND
@@ -223,6 +264,16 @@ bool Jogo::Collision_Treasure()
 
 		return true;				 
 	}
+	else if (uniTestarColisaoPontoComSprite(t_x, t_y, treasure, P2[sChar()]->getX(), P2[sChar()]->getY(), 0))
+	{
+		treasure.setAnimacao(1);
+		treasure.avancarAnimacao();
+		treasure.setAnimacao(2);
+		treasure.avancarAnimacao();
+		treasure.terminouAnimacao();
+
+		return true;
+	}
 
 	return false;
 	
@@ -233,19 +284,22 @@ int Jogo::sChar()
 	if (gTeclado.soltou[TECLA_1])
 	{
 		x_char = 0;
-		text.setString("class: Knight");
+		TX.text.setString("class: Knight");
+		TX2.text.setString("class: Knight");
 	}
 
 	if (gTeclado.soltou[TECLA_2])
 	{
 		x_char = 1;
-		text.setString("class: Mage");
+		TX.text.setString("class: Mage");
+		TX2.text.setString("class: Mage");
 	}
 
 	if (gTeclado.soltou[TECLA_3])
 	{
 		x_char = 2;
-		text.setString("class: Thief");
+		TX.text.setString("class: Thief");
+		TX2.text.setString("class: Thief");
 	}
 
 	return x_char;

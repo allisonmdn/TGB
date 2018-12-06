@@ -5,6 +5,7 @@
 Knight::Knight()
 {
 	
+	
 }
 
 

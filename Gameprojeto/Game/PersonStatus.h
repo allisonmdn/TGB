@@ -25,18 +25,19 @@ public:
 	void drawPS();
 	void Profile();
 
-
-	//HPMAX and STAMINAMAX
-	int healthBar;
-	int staminaBar;
-
-private:
 	//TEXTS	PROFILE
 	Texto lifep, sta;
 	Texto Texto_; //Class.
 	std::string Hp_v = "HP: ";
 	std::string stamina_v = "STA: ";
 	std::string TextoTeste = "Player 1"; //Account
+	std::string TextoTeste2 = "Player 2";
+
+
+	//HPMAX and STAMINAMAX
+	int healthBar;
+	int staminaBar;
+	
 	
 protected:
 	//ATRIBUTTES

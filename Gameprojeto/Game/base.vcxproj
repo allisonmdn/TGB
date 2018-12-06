@@ -106,29 +106,35 @@
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="Knight2.cpp" />
     <ClCompile Include="Mage.cpp" />
+    <ClCompile Include="Mage2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Personagem.cpp" />
-    <ClCompile Include="PersonStatus.cpp" />
+    <ClCompile Include="Personagem2.cpp" />
     <ClCompile Include="Resources_Sound.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="StackAccounts.cpp" />
     <ClCompile Include="Thief.cpp" />
+    <ClCompile Include="Thief2.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="Knight2.h" />
     <ClInclude Include="Mage.h" />
+    <ClInclude Include="Mage2.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Personagem.h" />
-    <ClInclude Include="PersonStatus.h" />
+    <ClInclude Include="Personagem2.h" />
     <ClInclude Include="Resources_Sound.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="StackAccounts.h" />
     <ClInclude Include="Thief.h" />
+    <ClInclude Include="Thief2.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

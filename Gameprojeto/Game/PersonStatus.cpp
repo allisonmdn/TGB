@@ -135,36 +135,5 @@ void PersonStatus::drawPS()
 
 void PersonStatus::Profile()
 {
-	//HP LIFE POINTS
-
-	lifep.setFonte("fonte profile");	
-	lifep.setCor(0, 0, 0, true);
-	lifep.setString(Hp_v + std::to_string(gethpMax()));
-	lifep.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
-	lifep.setEspacamentoLinhas(1.5f);
-
-	//STAMINA POINTS
-
-	sta.setFonte("fonte profile");
-	sta.setCor(0, 0, 0, true);
-	sta.setString(stamina_v + std::to_string(getStaminaMax()));
-	sta.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
-	sta.setEspacamentoLinhas(1.5f);
-
-
-	//PLAYER PROFILE
-
-	Texto_.setFonte("fonte profile");
-	Texto_.setCor(0, 0, 0, true);
-	Texto_.setString(TextoTeste);
-	Texto_.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
-	Texto_.setEspacamentoLinhas(1.5f); 
 		
-
-	//DRAW TEXT
-
-	this->Texto_.desenhar(50, 40);
-	this->lifep.desenhar(50, 70);
-	this->sta.desenhar(150, 70);
-	
 }

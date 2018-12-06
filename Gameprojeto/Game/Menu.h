@@ -20,9 +20,7 @@ public:
 	void FirstWindow();
 	void newGame_m();
 	void loadGame_m();
-	void ranking_m();
-	void credits_m();
-	void options_m();
+	void ranking_m();		
 	bool Exit_m();
 	
 

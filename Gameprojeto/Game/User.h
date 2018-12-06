@@ -19,7 +19,8 @@ public:
 	~User();
 	void Register();
 	void Login();
-	void Organize();
+	void organize();
+	void desenhar();
 	
 protected:
 	std::string userName, passWord, userNameC, passWordC;	 	

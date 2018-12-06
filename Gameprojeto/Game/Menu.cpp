@@ -187,15 +187,7 @@ void Menu::ranking_m()
 	
 }
 
-void Menu::credits_m()
-{
-	
 
-}
-
-void Menu::options_m()
-{
-}
 bool Menu::Exit_m()
 {
 	if (sair.estaClicado())
@@ -322,6 +314,44 @@ void Menu::updateMenu()
 		//END
 
 		break;
+
+	case REGISTER:
+
+		loginScene.desenhar(400, 300);
+
+		regster.desenhar();
+
+		cadastrarUsuario.setX(650);
+		cadastrarUsuario.setY(520);
+
+		cadastrarUsuario.desenhar();
+		cadastrarUsuario.atualizar();
+
+		logReg.Register();
+
+		//REGISTERED
+
+		if (cadastrarUsuario.estaClicado())
+		{
+			op = MenuState::MainMenu_LOG;
+			stackMenu.push(op);
+			stackMenu.top();
+		}
+
+		voltar.desenhar();
+		voltar.atualizar();
+
+		//RETURN
+		if (voltar.estaClicado())
+		{
+			op = MenuState::MainMenu_LOG;
+			stackMenu.push(op);
+			stackMenu.top();
+		}
+
+		break;
+	case LOGIN:
+		break;
 	case NEW_G:
 		for (int i = sizeStack; 0 < i; i--)
 		{
@@ -387,9 +417,9 @@ void Menu::updateMenu()
 			stackMenu.pop();
 		}
 		
-		gGraficos.desenharRetangulo(150,70, 0, 500, 450, 0, 0, 0, 0, 0, 128, true);
+		gGraficos.desenharRetangulo(150,70, 0, 500, 450, 0, 0, 0, 0, 0, 128, true);	//DRAWING BACKGROUND OPTION
 		text_window.setFonte("fonte2");		
-		text_window.setString("DEVELOPERS\nAllison Medina\nAnderson Paim\n\nART\nAllison Medina\n\nCODES\nAllison Medina\nAnderson Paim");
+		text_window.setString("DEVELOPERS\nAllison Medina\nAnderson Paim\n\nART\nAllison Medina\n\nCODES\nAllison Medina\nAnderson Paim\n\nESPECIALS CREDITS\nSound: Knight Attack\nVinicius Garmentz\nArt: Persons and Tileset\nUnknown Source");
 		text_window.setEspacamentoLinhas(1.5);
 		text_window.setAlinhamento(TEXTO_CENTRALIZADO);
 		text_window.desenhar(400, 300);
@@ -424,41 +454,6 @@ void Menu::updateMenu()
 
 		break;
 	
-	case REGISTER:
-
-		loginScene.desenhar(400, 300);  		
-		
-		regster.desenhar();
-
-		cadastrarUsuario.setX(650);
-		cadastrarUsuario.setY(520);
-
-		cadastrarUsuario.desenhar();
-		cadastrarUsuario.atualizar();
-
-		logReg.Register();
-
-		//REGISTERED
-
-		if (cadastrarUsuario.estaClicado())
-		{
-			op = MenuState::MainMenu_LOG;
-			stackMenu.push(op);
-			stackMenu.top(); 
-		}
-		
-		voltar.desenhar();
-		voltar.atualizar();
-
-		//RETURN
-		if (voltar.estaClicado())
-		{
-			op = MenuState::MainMenu_LOG;
-			stackMenu.push(op);
-			stackMenu.top();
-		}
-
-		break;
 	case RETURN:
 		op = MainMenu;
 		stackMenu.push(op);

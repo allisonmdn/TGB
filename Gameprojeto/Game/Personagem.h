@@ -2,7 +2,7 @@
 #include "libUnicornio.h"
 #include <time.h>
 #include "Resources_Sound.h"
-#include "PersonStatus.h"
+
 
 #pragma once
 class Personagem : public ObjetoTileMap
@@ -10,7 +10,7 @@ class Personagem : public ObjetoTileMap
 public:
 	Personagem();
 	~Personagem();
-	void setSpriteSheet(std::string sSheet);
+	void setSpriteSheet(std::string sSprite);
 	virtual void draw();
 	virtual void update();
 	virtual void attack();
@@ -21,10 +21,38 @@ public:
 	float getSpeed();	
 	Texto text;
 
+	//ATRIBUTTES
+
+	void attributes();
+	void DamageTaken();
+	void sethpMax(int hPMax);
+	void setStamina(int stamina_);
+	void sethP(int healthp_);
+	void setStaminaMax(int StaMax);
+	int gethpMax();
+	int getHp();
+	int getStaminaMax();
+	int getStamina();
+	int getStrength();
+	int getAgility();
+	int getVitality();
+	int getIntelligence();
+
+	//HPMAX and STAMINAMAX
+	int healthBar;
+	int staminaBar;
+
+	//TEXTS	PROFILE
+	Texto lifep, sta;
+	Texto Texto_; //Class.
+	std::string Hp_v = "HP: ";
+	std::string stamina_v = "STA: ";
+	std::string TextoTeste = "Player 1";
+
 protected:
 	//MOVIMENT
 
-	Vetor2D dir;
+	float mx, my;
 	float x, y; //shot 
 	float speed;
 	int direcao = 0;
@@ -43,9 +71,13 @@ protected:
 	Resources_Sound Sounds;
 	Resources_Sound Theme;
 
-	//STATUS PERSON
+	//ATRIBUTTES
 
-	PersonStatus pStatus;
+	int strength, vitality, intelligence, agility; // attributes variables.
+	int powerUP;
+	int atk, atkM; //Atk
+	int def, defM;
+	int stamina, healthp;
 	
 	
 

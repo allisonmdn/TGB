@@ -1,5 +1,6 @@
-#include <iostream>	
-#include "Personagem.h"	
+#include <iostream>
+#include "Personagem.h"
+#include "Personagem2.h"
 //#include "LoadingResources.h"
 #include "libUnicornio.h"
 #include "Resources_Sound.h"
@@ -8,10 +9,13 @@
 #include "Knight.h"
 #include "Mage.h"
 #include "Thief.h"
+#include "Knight2.h"
+#include "Mage2.h"
+#include "Thief2.h"
 
 
 #pragma once
-class Jogo : public Personagem
+class Jogo
 
 {
 public:
@@ -26,7 +30,8 @@ public:
 	int sChar();
 	
 private:
-	Personagem * P1[3];
+	Personagem * P1[3], TX;
+	Personagem2 * P2[3],TX2;
 	TileMap mapa, mapa2;
 	//fstream inORout;
 	//ofstream outs;
@@ -40,6 +45,7 @@ private:
 	int t_x = 0; //Variable "x" and "y" to randomly respawn TREASURE BOX
 	int t_y = 0;	
 	int x_char = 0;
+	int time;
 	
 	
 	

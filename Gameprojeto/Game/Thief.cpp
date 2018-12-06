@@ -4,6 +4,7 @@
 
 Thief::Thief()
 {
+	
 }
 
 

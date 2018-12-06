@@ -1,7 +1,7 @@
 #pragma once
+
 #include "Personagem.h"
-class Mage :
-	public Personagem
+class Mage:public Personagem
 {
 public:
 	Mage();
