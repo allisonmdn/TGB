@@ -38,6 +38,9 @@ void Jogo::inicializar()
 
 	mapa.carregar("assets/tilemaps/mapa.json");
 	mapa2.carregar("assets/tilemaps/mapa2.json");
+
+	//ATRIBUTTES
+		
 	
 
 	//Text
@@ -45,6 +48,7 @@ void Jogo::inicializar()
 	gRecursos.carregarFonte("fonte1", "assets/fonts/minecraft.ttf", 32);
 	gRecursos.carregarFonte("fonte2", "assets/fonts/minecraft.ttf", 16);
 	gRecursos.carregarFonte("fonte profile", "assets/fonts/minecraft.ttf", 16, FONTE_ESTILO_NEGRITO);
+	
 	
 
 	//SpriteSheets Person
@@ -120,22 +124,19 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
-	int Tempo;
-	
 
 	t_x = rand() % width;
 	t_y = rand() % height;
-
-	gTempo.inicializar();
+		
 	
 	while (!gTeclado.soltou[TECLA_ESC] && !gEventos.sair && !menuz.Exit_m() == true)
 	{
 		uniIniciarFrame();	 
 
+		//Draw Map
+
 		mapa2.desenhar();
-									 		
-		Tempo = 60 * gTempo.getDeltaTempo();
-		
+				
 
 		//Switch Character.
 		
@@ -143,6 +144,8 @@ void Jogo::executar()
 
 						
 		Collisions();
+
+		//TREASURE BOX
 		
 		treasure.desenhar(t_x, t_y);		
 			
@@ -154,10 +157,9 @@ void Jogo::executar()
 
 			  			  
 		text.desenhar(150, 40); // Class name.
+				
 
-		
-
-		//Button
+		//Button SOUND
 
 		//Btn.desenhar(780, 10);
 		Btn.setX(780);

@@ -49,18 +49,16 @@ void Personagem::setSpriteSheet(std::string sSprite)
 void Personagem::draw()	//Draws using the variable as condition.
 {
 	
-
-	Texto_.setFonte("fonte profile");
-	Texto_.setCor(0, 0, 0, true);
-	Texto_.setString(TextoTeste);
-	Texto_.setAlinhamento(TEXTO_ALINHADO_A_ESQUERDA);
-	Texto_.setEspacamentoLinhas(1.5f);
+	//TEXT POS UP HEAD
+	
+	//USERNAME
 
 	text.setFonte("fonte2");
-	text.setString("Username P1");	
+	text.setString("Username P1");
 	text.setCor(0, 0, 0, true);
 	text.setAlinhamento(TEXTO_CENTRALIZADO);
 	text.setEspacamentoLinhas(1.5f);
+
 
 	this->spr.desenhar(getX(), getY());
 	
@@ -90,11 +88,9 @@ void Personagem::draw()	//Draws using the variable as condition.
 	}
 	       //END
 
-
-	this->Texto_.desenhar(50, 40);
-	this->text.desenhar(getX(), (getY() - 35)); //Player text on person.
-
-
+	 	
+	this->text.desenhar(getX(), (this->getY() - 35)); //Player text on person.
+	this->pStatus.drawPS();
 	
 	//from Tiled
 
@@ -111,6 +107,7 @@ void Personagem::update()
 		{
 			x = getX();
 			y = getY();
+
 		}	
 }
 void Personagem::attack()

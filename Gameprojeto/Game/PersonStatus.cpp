@@ -2,18 +2,23 @@
 
 PersonStatus::PersonStatus()
 {
-	this->healthBar = 0;   //HPMax
-	this->staminaBar = 0;  //StaminaMAX
-	this->strength = 0;		
-	this->agility = 0;
-	this->vitality = 0;
-	this->intelligence = 0;
+	this->healthBar = 100;   //HPMax
+	this->staminaBar = 100;  //StaminaMAX
+
+	this->strength = 1;		
+	this->agility = 1;
+	this->vitality = 1;
+	this->intelligence = 1;
+
 	this->atk = 0;
 	this->atkM = 0;
-	this->def = 0;
-	this->defM = 0;
-	this->stamina = 0;
-	this->powerUP = 0;
+	this->def = 1;
+	this->defM = 1;	 
+
+	this->powerUP = 1;
+
+	this->healthp = 50;
+	this->stamina = 1;
 	
 }
 
@@ -25,9 +30,8 @@ void PersonStatus::attributes()
 {
 	//atk -= def; Attacking
 	//atkM -= defM;
-	healthBar += (vitality * 5);
-	staminaBar += stamina;
-	
+	healthBar += healthp +(vitality * 5);
+	staminaBar += stamina;	 	
 	
 }
 
@@ -46,12 +50,12 @@ void PersonStatus::DamageTaken()
 	
 }
 
-float PersonStatus::gethpMax()
-{
+int PersonStatus::gethpMax()
+{			
 	return healthBar;
 }
 
-float PersonStatus::getStaminaMax()
+int PersonStatus::getStaminaMax()
 {
 	return staminaBar;
 }
@@ -74,4 +78,45 @@ int PersonStatus::getVitality()
 int PersonStatus::getIntelligence()
 {
 	return intelligence;
+}
+
+void PersonStatus::drawPS()
+{
+	this->Profile();	
+}
+
+void PersonStatus::Profile()
+{
+	//HP LIFE POINTS
+
+	lifep.setFonte("fonte profile");	
+	lifep.setCor(0, 0, 0, true);
+	lifep.setString(Hp_v + std::to_string(gethpMax()));
+	lifep.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
+	lifep.setEspacamentoLinhas(1.5f);
+
+	//STAMINA POINTS
+
+	sta.setFonte("fonte profile");
+	sta.setCor(0, 0, 0, true);
+	sta.setString(stamina_v + std::to_string(getStaminaMax()));
+	sta.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
+	sta.setEspacamentoLinhas(1.5f);
+
+
+	//PLAYER PROFILE
+
+	Texto_.setFonte("fonte profile");
+	Texto_.setCor(0, 0, 0, true);
+	Texto_.setString(TextoTeste);
+	Texto_.setAlinhamento(TEXTO_ALINHADO_A_DIREITA);
+	Texto_.setEspacamentoLinhas(1.5f); 
+		
+
+	//DRAW TEXT
+
+	this->Texto_.desenhar(50, 40);
+	this->lifep.desenhar(50, 70);
+	this->sta.desenhar(150, 70);
+	
 }

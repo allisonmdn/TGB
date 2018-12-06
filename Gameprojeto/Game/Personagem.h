@@ -1,7 +1,8 @@
 #include <iostream>
 #include "libUnicornio.h"
 #include <time.h>
-#include "Resources_Sound.h"  
+#include "Resources_Sound.h"
+#include "PersonStatus.h"
 
 
 #pragma once
@@ -18,22 +19,36 @@ public:
 	float getX();
 	float getY();
 	void setSpeed(float speed_);
-	float getSpeed();
-	Texto Texto_, text;
-	std::string TextoTeste = "Player 1"; //Optional
+	float getSpeed();	
+	Texto text;
 
 protected:
+	//MOVIMENT
+
 	Vetor2D dir;
-	float x, y; //shot
+	float x, y; //shot 
+	float speed;
+	int direcao = 0;
+
+	bool vivo = false;
+
+	//SPRITES
 	Sprite spr, spr2, tiro;
 	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
-	float speed;
+	
 	int width, height; //Screen coordinates
 	int respawn;
+
+	//SOUNDS
+
 	Resources_Sound Sounds;
 	Resources_Sound Theme;
-	int direcao = 0;
-	bool vivo = false;
+
+	//STATUS PERSON
+
+	PersonStatus pStatus;
+	
+	
 
 	
 	
