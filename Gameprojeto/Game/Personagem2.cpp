@@ -49,6 +49,7 @@ Personagem2::Personagem2()
 	this->stamina = 1;
 
 	attributes();
+
 }
 
 Personagem2::~Personagem2()
@@ -159,8 +160,8 @@ int Personagem2::getIntelligence()
 void Personagem2::setSpriteSheet(std::string sSprite)
 {
 
-	spr.setSpriteSheet(sSprite);//Set spr to get variable type string
-	setSprite(&spr);
+	spr2.setSpriteSheet(sSprite);//Set spr to get variable type string
+	setSprite(&spr2);
 
 
 }
@@ -209,7 +210,7 @@ void Personagem2::draw()	//Draws using the variable as condition.
 	lifep.desenhar(750, 70);
 	sta.desenhar(650, 70);
 
-	this->spr.desenhar(getX(), getY());
+	this->spr2.desenhar(getX(), getY());
 
 	//HpBar
 
@@ -229,7 +230,7 @@ void Personagem2::draw()	//Draws using the variable as condition.
 	hB_brilho.setSpriteSheet("BrilhoBarra");
 	hB_brilho.desenhar(getX(), (getY() - 25));
 
-	if (gTeclado.soltou[TECLA_ENTER2])
+	if (gTeclado.soltou[TECLA_CTRL_DIR])
 	{
 
 		hB_Points.setEscala(-1, 0);
@@ -253,8 +254,8 @@ void Personagem2::attack()
 
 void Personagem2::update()
 {
-	Personagem2::attack();
-	Personagem2::walk();
+	attack();
+	walk();
 
 	if (vivo == false)
 	{
@@ -272,28 +273,28 @@ void Personagem2::walk()
 	{
 		//Right
 		mx += 2;
-		spr.setAnimacao(2, false);
+		spr2.setAnimacao(2, false);
 		//x + 1;
 	}
 	else if (gTeclado.segurando[TECLA_ESQ])
 	{
 		//Left
 		mx -= 2;
-		spr.setAnimacao(1, false);
+		spr2.setAnimacao(1, false);
 		//x - 1;
 	}
 	else if (gTeclado.segurando[TECLA_CIMA])
 	{
 		//Up
 		my -= 2;
-		spr.setAnimacao(3, false);
+		spr2.setAnimacao(3, false);
 		//y - 1;
 	}
 	else if (gTeclado.segurando[TECLA_BAIXO])
 	{
 		//Down		
 		my += 2;
-		spr.setAnimacao(0, false);
+		spr2.setAnimacao(0, false);
 		//y + 1;  
 	}
 	//Walk false.
@@ -303,10 +304,10 @@ void Personagem2::walk()
 		my = my;
 		getX();
 		getY();
-		spr.recomecarAnimacao();
+		spr2.recomecarAnimacao();
 	}
 
-	spr.avancarAnimacao();	
+	spr2.avancarAnimacao();	
 		
 }
 float Personagem2::getX()
@@ -326,9 +327,14 @@ void Personagem2::setSpeed(float speed_)
 
 	speed = 2;
 	
-	spr.setVelocidadeAnimacao(speed);
+	spr2.setVelocidadeAnimacao(speed);
 }
 float Personagem2::getSpeed()
 {
 	return speed;
+}
+
+Sprite Personagem2::getSprite()
+{
+	return spr2;
 }

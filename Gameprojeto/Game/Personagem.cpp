@@ -339,5 +339,10 @@ float Personagem::getSpeed()
 	return speed;
 }
 
+Sprite Personagem::getSprite()
+{
+	return spr;
+}
+
 
 

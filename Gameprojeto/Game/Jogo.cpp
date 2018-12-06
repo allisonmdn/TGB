@@ -279,6 +279,19 @@ bool Jogo::Collision_Treasure()
 	
 }
 
+bool Jogo::Collision_Player()
+{
+	
+	if (uniTestarColisaoSpriteComSprite(P1[sChar()]->getSprite(), P1[sChar()]->getX(), P1[sChar()]->getY(), 0, P2[sChar()]->getSprite(), P2[sChar()]->getX(), P2[sChar()]->getY(),0,true))
+	{
+
+
+		return true;
+	}
+
+	return false;
+}
+
 int Jogo::sChar()
 {
 	if (gTeclado.soltou[TECLA_1])

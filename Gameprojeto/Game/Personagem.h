@@ -20,7 +20,7 @@ public:
 	void setSpeed(float speed_);
 	float getSpeed();	
 	Texto text;
-
+	Sprite getSprite();
 	//ATRIBUTTES
 
 	void attributes();

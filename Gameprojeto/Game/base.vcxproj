@@ -115,7 +115,6 @@
     <ClCompile Include="Personagem2.cpp" />
     <ClCompile Include="Resources_Sound.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="StackAccounts.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="Thief2.cpp" />
     <ClCompile Include="User.cpp" />
@@ -132,7 +131,6 @@
     <ClInclude Include="Personagem2.h" />
     <ClInclude Include="Resources_Sound.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="StackAccounts.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="Thief2.h" />
     <ClInclude Include="User.h" />

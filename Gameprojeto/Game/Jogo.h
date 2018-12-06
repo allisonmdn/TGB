@@ -27,6 +27,7 @@ public:
 	void executar();
 	void Collisions();
 	bool Collision_Treasure();
+	bool Collision_Player();
 	int sChar();
 	
 private:
@@ -45,9 +46,7 @@ private:
 	int t_x = 0; //Variable "x" and "y" to randomly respawn TREASURE BOX
 	int t_y = 0;	
 	int x_char = 0;
-	int time;
-	
-	
+	int time; 
 	
 	
 	

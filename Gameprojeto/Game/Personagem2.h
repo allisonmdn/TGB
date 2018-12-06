@@ -20,6 +20,7 @@ public:
 	void setSpeed(float speed_);
 	float getSpeed();
 	Texto text;
+	Sprite getSprite();
 
 	void attributes();
 	void DamageTaken();
@@ -60,7 +61,7 @@ protected:
 	bool vivo = false;
 
 	//SPRITES
-	Sprite spr, spr2, tiro;
+	Sprite spr2, tiro;
 	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
 
 	int width, height; //Screen coordinates

@@ -3,8 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "Account.h"
-#include "StackAccounts.h"
+#include "Account.h"  
 #include "Texto.h"
 #include "libUnicornio.h"
 #include <unordered_map>
@@ -27,8 +26,7 @@ protected:
 	std::string uNameLog, passwLog;
 	std::ofstream reg;
 	std::ifstream regIn;
-	Texto inputTEXT, txt;
-	StackAccounts StackUser;
+	Texto inputTEXT, txt;	
 	
 	
 };
