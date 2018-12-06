@@ -1,13 +1,13 @@
 #include <iostream>	
-#include "Personagem.h"
-#include "Knight.h"
-#include "Mage.h"
-#include "Thief.h"
+#include "Personagem.h"	
 //#include "LoadingResources.h"
 #include "libUnicornio.h"
 #include "Resources_Sound.h"
 #include "ObjetoTileMap.h"
 #include "Menu.h"
+#include "Knight.h"
+#include "Mage.h"
+#include "Thief.h"
 
 
 #pragma once
@@ -26,7 +26,7 @@ public:
 	int sChar();
 	
 private:
-	Personagem * Class[3];
+	Personagem * P1[3];
 	TileMap mapa, mapa2;
 	//fstream inORout;
 	//ofstream outs;

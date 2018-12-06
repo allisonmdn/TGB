@@ -29,6 +29,8 @@ Personagem::Personagem()
 	
 	x = dir.x;
 	y = dir.y;
+
+	
 }
 
 
@@ -86,8 +88,7 @@ void Personagem::draw()	//Draws using the variable as condition.
 	    hB_Points.setEscala(-1, 0);
 				
 	}
-	       //END
-
+	       //END	
 	 	
 	this->text.desenhar(getX(), (this->getY() - 35)); //Player text on person.
 	this->pStatus.drawPS();

@@ -77,8 +77,8 @@ void Jogo::inicializar()
 	Theme.setThemeSong("Kings_Feast");
 
 	// Knight
-	Class[0] = new Knight();
-	Class[0]->setSpriteSheet("knight");
+	P1[0] = new Knight();
+	P1[0]->setSpriteSheet("knight");
 	text.setFonte("fonte profile");
 	text.setString("class: Knight");
 
@@ -88,19 +88,19 @@ void Jogo::inicializar()
 
 	// Mage
 
-	Class[1] = new Mage();
-	Class[1]->setSpriteSheet("mage");
+	P1[1] = new Mage();
+	P1[1]->setSpriteSheet("mage");
 
 	// Thief
 
-	Class[2] = new Thief();
-	Class[2]->setSpriteSheet("thief");
+	P1[2] = new Thief();
+	P1[2]->setSpriteSheet("thief");
 
 	ObjetoTileMap * ObjPos;
 	ObjPos = mapa2.getCamadaDeObjetos("Objetos")->getObjeto("Pos1"); //ObjPos = map getLayerOfObjects("string") and point to getObject("string");
 				
 
-	Class[sChar()]->setPosCentro(ObjPos->getPosCentro());	// Character type pointer indicate to set position in center (ObjPos point to get position in center).
+	P1[sChar()]->setPosCentro(ObjPos->getPosCentro());	// Character type pointer indicate to set position in center (ObjPos point to get position in center).
 
 	
 	//Map1
@@ -152,8 +152,8 @@ void Jogo::executar()
 
 		//Person
 
-		Class[sChar()]->draw();
-		Class[sChar()]->update();
+		P1[sChar()]->draw();
+		P1[sChar()]->update();
 
 			  			  
 		text.desenhar(150, 40); // Class name.
@@ -163,7 +163,7 @@ void Jogo::executar()
 
 		//Btn.desenhar(780, 10);
 		Btn.setX(780);
-		Btn.setY(10);
+		Btn.setY(580);
 		Btn.atualizar();
 		Btn.desenhar();
 				
@@ -206,11 +206,8 @@ void Jogo::executar()
 }
 
 void Jogo::Collisions()
-{
-	
-	bool treasure_b = Collision_Treasure();
-
-	  	
+{			
+	bool treasure_b = Collision_Treasure();	 	  	
 	
 }
 
@@ -218,14 +215,15 @@ bool Jogo::Collision_Treasure()
 {
 	
 
-	if (mapa.existeObjetoDoTipoNaPos("Treasure Box", Class[sChar()]->getX(), Class[sChar()]->getY()))
-	{
-		
+	if (uniTestarColisaoPontoComSprite(t_x, t_y, treasure, P1[sChar()]->getX(), P1[sChar()]->getY(), 0))
+	{	 		
+		treasure.setAnimacao(1);
+		treasure.avancarAnimacao();
+		treasure.setAnimacao(2);
+		treasure.avancarAnimacao();
+		treasure.terminouAnimacao(); 				
 
-		uniTestarColisaoPontoComSprite(Class[sChar()]->getX(), Class[sChar()]->getY(), treasure, t_x, t_y, 0);
-		
-
-		return true;
+		return true;				 
 	}
 
 	return false;

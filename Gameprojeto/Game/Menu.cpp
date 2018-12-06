@@ -210,7 +210,7 @@ void Menu::updateMenu()
 	enum MenuState
 	{
 		MainMenu_LOG, MainMenu, NEW_G, LOAD_G, RANKING, CREDITS, REGISTER, LOGIN,
-		Playing, Options, Exit, RETURN
+		Playing, Exit, RETURN
 
 	};
 
@@ -418,26 +418,7 @@ void Menu::updateMenu()
 		voltar.atualizar();
 
 		break;
-	case Options:
-
-		sizeStack = stackMenu.size();
-
-		for (int i = sizeStack; 0 < i; i--)
-		{
-			stackMenu.pop();
-		}
-		//RETURN
-		if (voltar.estaClicado())
-		{
-			op = MenuState::RETURN;
-			stackMenu.push(RETURN);
-			stackMenu.top();
-		}
-
-		stackMenu.push(Options);
-		stackMenu.top();
-
-		break;
+	
 	case REGISTER:
 
 		loginScene.desenhar(400, 300);
@@ -445,6 +426,7 @@ void Menu::updateMenu()
 		
 		voltar.desenhar();
 		voltar.atualizar();
+
 		//RETURN
 		if (voltar.estaClicado())
 		{

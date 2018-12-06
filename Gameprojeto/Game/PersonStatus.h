@@ -7,10 +7,17 @@ class PersonStatus
 public:
 	PersonStatus();
 	~PersonStatus();  	 
-	void attributes(); // Method of attributes to added to a person.
+	//void attributes(int strength_, int vitality_, int intelligence_, int agility_, int powerUp_,int atk_, int atkM_, int def_, int defM_); // Method of attributes to added to a person.
+	void attributes();
 	void DamageTaken();
+	void sethpMax(int hPMax);
+	void setStamina(int stamina_);
+	void sethP(int healthp_);
+	void setStaminaMax(int StaMax);
 	int gethpMax();
+	int getHp();			 	
 	int getStaminaMax();
+	int getStamina();  	
 	int getStrength();
 	int getAgility();
 	int getVitality();

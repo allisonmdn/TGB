@@ -17,22 +17,39 @@ PersonStatus::PersonStatus()
 
 	this->powerUP = 1;
 
-	this->healthp = 50;
+	this->healthp = 1;
 	this->stamina = 1;
-	
+
+	attributes();
+			
 }
 
 PersonStatus::~PersonStatus()
 {
+
 }
 
+//void PersonStatus::attributes(int strength_, int vitality_, int intelligence_, int agility_, int powerUp_, int atk_, int atkM_, int def_, int defM_)
 void PersonStatus::attributes()
-{
-	//atk -= def; Attacking
-	//atkM -= defM;
-	healthBar += healthp +(vitality * 5);
-	staminaBar += stamina;	 	
+{		
+	/*this->strength = strength_;
+	this->agility = agility_;
+	this->vitality = vitality_;
+	this->intelligence = intelligence_;			
 	
+	this->atk = atk_;
+	this->atkM = atkM_;
+	this->def = def_;
+	this->defM = defM_;
+
+	this->powerUP = powerUp_;*/
+
+	//atk -= def; //Attacking
+	//atkM -= defM;
+
+	staminaBar += stamina;
+	healthBar += healthp + (vitality * 5);
+
 }
 
 void PersonStatus::DamageTaken()
@@ -51,13 +68,44 @@ void PersonStatus::DamageTaken()
 }
 
 int PersonStatus::gethpMax()
-{			
+{		
 	return healthBar;
+}
+
+void PersonStatus::sethP(int healthp_)
+{
+	healthp = healthp_;		
+}
+
+void PersonStatus::setStaminaMax(int StaMax)
+{		
+	this->staminaBar = StaMax;
+	
+}
+
+void PersonStatus::sethpMax(int hPMax)
+{
+	this->healthBar = hPMax;	
+}
+
+void PersonStatus::setStamina(int stamina_)
+{		
+	this->stamina = stamina_;
 }
 
 int PersonStatus::getStaminaMax()
 {
 	return staminaBar;
+}
+
+int PersonStatus::getStamina()
+{
+	return stamina;
+}
+
+int PersonStatus::getHp()
+{
+	return healthp;
 }
 
 int PersonStatus::getStrength()

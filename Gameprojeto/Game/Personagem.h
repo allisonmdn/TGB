@@ -4,7 +4,6 @@
 #include "Resources_Sound.h"
 #include "PersonStatus.h"
 
-
 #pragma once
 class Personagem : public ObjetoTileMap
 {
