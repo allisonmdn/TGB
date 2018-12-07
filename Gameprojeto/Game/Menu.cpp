@@ -4,7 +4,7 @@
 
 Menu::Menu()
 {
-			
+	
 }
 
 
@@ -80,6 +80,11 @@ void Menu::LoadMenu()
 
 	Blogin.setX(700);
 	Blogin.setY(500);
+
+	inputMe.inicializar();
+
+	user.first = "";
+	user.second = "";
 }
 
 
@@ -198,6 +203,7 @@ bool Menu::Exit_m()
 	return ext;
 }
 void Menu::updateMenu()
+
 {
 	enum MenuState
 	{
@@ -216,12 +222,13 @@ void Menu::updateMenu()
 	{
 	case MainMenu_LOG:
 
-		loginScene.desenhar(400, 300);	 
+		loginScene.desenhar(400, 300);
+
 		
-		
+
 		login.desenhar();
 		login.atualizar();
-		
+
 		cadastrarUsuario.setX(390);
 		cadastrarUsuario.setY(450);
 
@@ -238,15 +245,15 @@ void Menu::updateMenu()
 
 		Blogin.desenhar();
 		Blogin.atualizar();
-				
+
 		if (Blogin.estaClicado())
 		{
-			
+
 			//logReg.Login();
 			op = MenuState::RETURN;
 			stackMenu.push(RETURN);
 			stackMenu.top();
-			
+
 		}
 
 		break;
@@ -258,7 +265,7 @@ void Menu::updateMenu()
 		//BEGIN DRAW
 
 		//New
-
+		gGraficos.desenharRetangulo(0, 0, 0, 800, 600, 0, 0, 0, 0, 0, 255, true);
 		novoJogo.desenhar();
 		novoJogo.atualizar();
 		//Load
@@ -319,7 +326,7 @@ void Menu::updateMenu()
 
 		loginScene.desenhar(400, 300);
 
-		regster.desenhar();
+		regster.desenhar();//Sprite registro
 
 		cadastrarUsuario.setX(650);
 		cadastrarUsuario.setY(520);
@@ -327,29 +334,85 @@ void Menu::updateMenu()
 		cadastrarUsuario.desenhar();
 		cadastrarUsuario.atualizar();
 
-		logReg.Register();
+		reg.open("Register.bin", std::ios::binary | std::ios::app);	  //Open
 
-		//REGISTERED
+		inputMe.atualizar();
+		inputMe.desenhar();
 
-		if (cadastrarUsuario.estaClicado())
+		//logReg.Register();
+
+												  //Account *account = new Account();				
+
+		//user.first = "";
+
+		//user.second = "";
+
+
+
+		if (!reg.is_open())
 		{
-			op = MenuState::MainMenu_LOG;
-			stackMenu.push(op);
-			stackMenu.top();
+			gDebug.erro("Arquivo de registro não está aberto");
 		}
-
-		voltar.desenhar();
-		voltar.atualizar();
-
-		//RETURN
-		if (voltar.estaClicado())
+		else
 		{
-			op = MenuState::MainMenu_LOG;
-			stackMenu.push(op);
-			stackMenu.top();
-		}
 
-		break;
+			//inputMe.inicializar(); // Habilitar
+			//inputMe.atualizar();
+			//inputMe.desenhar();
+
+			gGraficos.desenharTexto(user.first, 400, 300, 0, 0, 0, 255);
+
+			if (gTeclado.pressionou[TECLA_ENTER])
+			{
+
+								
+
+				if (user.first.empty()) // Se está vazio user.first insere.
+				{
+					user.first = inputMe.getTexto().getString();//Account
+					inputMe.limparTexto();
+					gDebug.depurar("login: ", user.first); //Testa o valor na variável.
+
+				} else if (user.second.empty()) {
+
+					
+						user.second = inputMe.getTexto().getString();//Account
+						inputMe.limparTexto();
+						gDebug.depurar("senha: ", user.second); //Testa o valor na variável.
+
+						users.insert(user);
+						reg << user.first;
+						reg << user.second;
+						inputMe.finalizar();
+						
+				}
+				
+				if (cadastrarUsuario.estaClicado())
+				{
+					op = MenuState::MainMenu_LOG;
+					stackMenu.push(op);
+					stackMenu.top();
+
+					//REGISTERED
+				}
+
+				reg.close();
+
+			}
+		
+
+			voltar.desenhar();
+			voltar.atualizar();
+
+			//RETURN
+			if (voltar.estaClicado())
+			{
+				op = MenuState::MainMenu_LOG;
+				stackMenu.push(op);
+				stackMenu.top();
+			}
+
+			break;
 	case LOGIN:
 		break;
 	case NEW_G:
@@ -365,6 +428,8 @@ void Menu::updateMenu()
 			stackMenu.push(RETURN);
 			stackMenu.top();
 		}
+		 
+		
 
 		stackMenu.push(NEW_G);
 		stackMenu.top();
@@ -416,9 +481,9 @@ void Menu::updateMenu()
 		{
 			stackMenu.pop();
 		}
-		
-		gGraficos.desenharRetangulo(150,70, 0, 500, 450, 0, 0, 0, 0, 0, 128, true);	//DRAWING BACKGROUND OPTION
-		text_window.setFonte("fonte2");		
+
+		gGraficos.desenharRetangulo(150, 70, 0, 500, 450, 0, 0, 0, 0, 0, 128, true);	//DRAWING BACKGROUND OPTION
+		text_window.setFonte("fonte2");
 		text_window.setString("DEVELOPERS\nAllison Medina\nAnderson Paim\n\nART\nAllison Medina\n\nCODES\nAllison Medina\nAnderson Paim\n\nESPECIALS CREDITS\nSound: Knight Attack\nVinicius Garmentz\nArt: Persons and Tileset\nUnknown Source");
 		text_window.setEspacamentoLinhas(1.5);
 		text_window.setAlinhamento(TEXTO_CENTRALIZADO);
@@ -453,7 +518,7 @@ void Menu::updateMenu()
 		voltar.atualizar();
 
 		break;
-	
+
 	case RETURN:
 		op = MainMenu;
 		stackMenu.push(op);
@@ -463,8 +528,9 @@ void Menu::updateMenu()
 	case Exit:
 		Menu::Exit_m();
 		break;
-	}
+		}
 
+	}
 }
 
 

@@ -61,7 +61,7 @@ protected:
 	bool vivo = false;
 
 	//SPRITES
-	Sprite spr2, tiro;
+	Sprite spr2, tiro2;
 	Sprite healthBar_Borda, hB_brilho, hB_Fundo, hB_Points; // HpBar
 
 	int width, height; //Screen coordinates

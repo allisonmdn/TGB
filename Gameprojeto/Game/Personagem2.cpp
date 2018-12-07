@@ -93,6 +93,7 @@ void Personagem2::DamageTaken()
 		healthBar -= (atkM - defM);
 	}
 	staminaBar -= (atk + atkM * 0.5);
+	healthBar -= 10;
 
 }
 

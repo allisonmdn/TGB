@@ -92,6 +92,8 @@ void Personagem::DamageTaken()
 	}
 	staminaBar -= (atk + atkM * 0.5);
 
+	healthBar -= 10;
+
 }
 
 int Personagem::gethpMax()

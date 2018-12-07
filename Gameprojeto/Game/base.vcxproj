@@ -14,7 +14,7 @@
     <ProjectGuid>{67AC409B-9BDA-4D9D-86C1-D2B9885557CF}</ProjectGuid>
     <RootNamespace>base</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -104,6 +104,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="InputTexto.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Knight2.cpp" />
@@ -117,10 +118,10 @@
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="Thief2.cpp" />
-    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="InputTexto.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Knight2.h" />
@@ -133,7 +134,6 @@
     <ClInclude Include="Score.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="Thief2.h" />
-    <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

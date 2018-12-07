@@ -1,6 +1,6 @@
 #include <iostream>
 #include "libUnicornio.h"
-#include "User.h"
+//#include "User.h"
 #include <stack>
 #include <string> 
 #include <unordered_map>
@@ -8,6 +8,8 @@
 #include <map>
 #include <string>
 #include "Score.h"
+#include "InputTexto.h"
+
 #pragma once
 class Menu
 {
@@ -26,7 +28,7 @@ public:
 
 protected:
 
-	User logReg;
+	//User logReg;
 
 	BotaoSprite novoJogo;
 	BotaoSprite carregarJogo;
@@ -46,6 +48,24 @@ protected:
 	int sizeStack; // Size of stack
 	bool ext = false; 	
 	std::stack<int> stackMenu;
+	InputTexto inputMe;
+	std::string userName, passWord, userNameC, passWordC;
+	std::string uNameLog, passwLog;
+
+	//REGISTER
+	typedef std::unordered_map<std::string, std::string> type_map;
+	typedef std::unordered_multimap<std::string, std::string> type_multimap;
+	typedef std::pair<std::string, std::string> par;
+
+	type_map users;
+	par user;
+	type_multimap::iterator it_multimap, it_multimap2;
+	type_map::iterator it;
+
+	//IN AND OUT.
+
+	std::ofstream reg;
+	std::ifstream regIn;
 		
 };
 

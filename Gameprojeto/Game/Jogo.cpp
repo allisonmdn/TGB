@@ -34,6 +34,9 @@ void Jogo::inicializar()
 	
 		
 	//Maps
+	gRecursos.carregarFonte("fonte1", "assets/fonts/minecraft.ttf", 32);
+	gRecursos.carregarFonte("fonte2", "assets/fonts/minecraft.ttf", 16);
+	gRecursos.carregarFonte("fonte profile", "assets/fonts/minecraft.ttf", 16, FONTE_ESTILO_NEGRITO);
 
 	menuz.LoadMenu();
 
@@ -49,9 +52,7 @@ void Jogo::inicializar()
 
 	//Text
 
-	gRecursos.carregarFonte("fonte1", "assets/fonts/minecraft.ttf", 32);
-	gRecursos.carregarFonte("fonte2", "assets/fonts/minecraft.ttf", 16);
-	gRecursos.carregarFonte("fonte profile", "assets/fonts/minecraft.ttf", 16, FONTE_ESTILO_NEGRITO);
+
 	
 	
 
@@ -68,11 +69,11 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("FundoBarra", "assets/spritesheets/HealthBar/FundoBarra.png", 1, 1);
 	gRecursos.carregarSpriteSheet("HpPointsPixel", "assets/spritesheets/HealthBar/HpPointsPixel.png", 1, 1);
 	gRecursos.carregarSpriteSheet("HpPointsPixel2", "assets/spritesheets/HealthBar/HpPointsPixel2.png", 1, 1);
-	gRecursos.carregarSpriteSheet("tiro", "assets/spritesheets/shot/tiro.png", 1, 1);
-	gRecursos.carregarSpriteSheet("tiro2", "assets/spritesheets/shot/tiro.png", 1, 1);
+	//gRecursos.carregarSpriteSheet("tiro", "assets/spritesheets/shot/tiro.png", 1, 1);
+	//gRecursos.carregarSpriteSheet("tiro2", "assets/spritesheets/shot/tiro.png", 1, 1);
 	gRecursos.carregarSpriteSheet("skull", "assets/spritesheets/shot/Skull.png", 1, 1);
 	gRecursos.carregarSpriteSheet("Treasure Box", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
-	gRecursos.carregarSpriteSheet("Rock", "assets/spritesheets/shot/Rock.png", 3, 1);
+	//gRecursos.carregarSpriteSheet("Rock", "assets/spritesheets/shot/Rock.png", 3, 1);
 	gRecursos.carregarSpriteSheet("Potion_HP", "assets/spritesheets/Powerups/Potion.png", 1, 1);
 
 	//ATK SPRITE
@@ -158,11 +159,10 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
-
 	t_x = rand() % width;
 	t_y = rand() % height;
-		
 	
+
 	while (!gTeclado.soltou[TECLA_ESC] && !gEventos.sair && !menuz.Exit_m() == true)
 	{
 		uniIniciarFrame();	 
@@ -298,7 +298,27 @@ bool Jogo::Collision_Player()
 	
 	if (uniTestarColisaoSpriteComSprite(P1[sChar()]->getSprite(), P1[sChar()]->getX(), P1[sChar()]->getY(), 0, P2[sChar()]->getSprite(), P2[sChar()]->getX(), P2[sChar()]->getY(),0,true))
 	{
-
+		if (gTeclado.soltou[TECLA_ESPACO] && P1[0] || P1[2])
+		{
+			P1[0]->setSpriteSheet("knight1");
+			P1[2]->setSpriteSheet("thief1");
+			P2[0]->sethpMax(-20);
+			P2[2]->sethpMax(-20);
+			P2[sChar()]->DamageTaken();
+			P2[sChar()]->healthBar - 10;
+			
+		}
+		if (gTeclado.soltou[TECLA_CTRL_DIR] && P2[0] || P2[2])
+		{
+			P1[0]->setSpriteSheet("knight1");
+			P1[2]->setSpriteSheet("thief1");
+			P1[0]->sethpMax(-20);
+			P1[2]->sethpMax(-20);
+			P1[sChar()]->DamageTaken();
+			P1[sChar()]->healthBar - 10;
+			
+		}
+		
 
 		return true;
 	}

@@ -12,6 +12,7 @@
 #include "Knight2.h"
 #include "Mage2.h"
 #include "Thief2.h"
+#include <ctime>
 
 
 #pragma once
@@ -24,7 +25,7 @@ public:
 
 	void inicializar();
 	void finalizar();
-	void executar();
+	void executar();	
 	void Collisions();
 	bool Collision_Treasure();
 	bool Collision_Player();
