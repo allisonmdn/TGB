@@ -116,6 +116,10 @@ void Personagem2::setStaminaMax(int StaMax)
 void Personagem2::sethpMax(int hPMax)
 {
 	this->healthBar = hPMax;
+	if (healthBar == 0)
+	{
+		sethpMax(0);
+	}
 }
 
 void Personagem2::setStamina(int stamina_)
@@ -320,6 +324,22 @@ void Personagem2::walk()
 
 	spr2.avancarAnimacao();	
 		
+}
+Sprite Personagem2::getShot()
+{
+	return tiro2;
+}
+float Personagem2::getShotX()
+{
+	return tx;
+}
+float Personagem2::getShotY()
+{
+	return ty;
+}
+int Personagem2::getDir()
+{
+	return direcao;
 }
 float Personagem2::getX()
 {

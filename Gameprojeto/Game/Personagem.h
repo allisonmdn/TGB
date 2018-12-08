@@ -17,6 +17,11 @@ public:
 	virtual void walk();
 	float getX();
 	float getY();
+	Sprite getShot();
+	float getShotX();
+	float getShotY();
+	int getDir();
+
 	void setSpeed(float speed_);
 	float getSpeed();	
 	Texto text;
@@ -37,6 +42,7 @@ public:
 	int getAgility();
 	int getVitality();
 	int getIntelligence();
+	
 
 	//HPMAX and STAMINAMAX
 	int healthBar;
@@ -54,7 +60,7 @@ protected:
 
 	float mx, my;
 	float x, y; //shot 
-	float speed;
+	float speed = 1;
 	int direcao = 0;
 
 	bool vivo = false;

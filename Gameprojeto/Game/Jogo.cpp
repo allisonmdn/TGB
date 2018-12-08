@@ -61,6 +61,7 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("knight", "assets/spritesheets/Knight.png", 4, 4);
 	gRecursos.carregarSpriteSheet("mage", "assets/spritesheets/mage.png", 4, 4);
 	gRecursos.carregarSpriteSheet("thief", "assets/spritesheets/thief.png", 4, 4);
+	
 	gRecursos.carregarSpriteSheet("sound", "assets/spritesheets/sound.png", 2, 1);
 	//HpBar
 	
@@ -74,7 +75,7 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("skull", "assets/spritesheets/shot/Skull.png", 1, 1);
 	gRecursos.carregarSpriteSheet("Treasure Box", "assets/spritesheets/Powerups/treasure_box_sheet.png", 3, 1);
 	//gRecursos.carregarSpriteSheet("Rock", "assets/spritesheets/shot/Rock.png", 3, 1);
-	gRecursos.carregarSpriteSheet("Potion_HP", "assets/spritesheets/Powerups/Potion.png", 1, 1);
+	//gRecursos.carregarSpriteSheet("Potion_HP", "assets/spritesheets/Powerups/Potion.png", 1, 1);
 
 	//ATK SPRITE
 	gRecursos.carregarSpriteSheet("thief1", "assets/spritesheets/Thief1.png", 4, 2);
@@ -85,7 +86,7 @@ void Jogo::inicializar()
 
 		
 	treasure.setSpriteSheet("Treasure Box");
-	potions.setSpriteSheet("Potion_HP");
+	//potions.setSpriteSheet("Potion_HP");
 	
 		
 	//Sounds
@@ -117,10 +118,22 @@ void Jogo::inicializar()
 	// Mage
 
 	P1[1] = new Mage();
-	P1[1]->setSpriteSheet("mage");
+	
 	
 	P2[1] = new Mage2();
-	P2[1]->setSpriteSheet("mage");
+	
+
+	if (gTeclado.pressionou[TECLA_ESPACO] || gTeclado.pressionou[TECLA_CTRL_DIR])
+	{
+		P1[1]->setSpriteSheet("mage1");
+		P2[1]->setSpriteSheet("mage1");
+	}
+	else
+	{
+		P1[1]->setSpriteSheet("mage");
+		P2[1]->setSpriteSheet("mage");
+
+	}
 
 	// Thief
 
@@ -260,7 +273,7 @@ void Jogo::executar()
 void Jogo::Collisions()
 {			
 	bool treasure_b = Collision_Treasure();	 	  	
-	
+	bool player_col = Collision_Player();
 }
 
 bool Jogo::Collision_Treasure()
@@ -296,32 +309,65 @@ bool Jogo::Collision_Treasure()
 bool Jogo::Collision_Player()
 {
 	
-	if (uniTestarColisaoSpriteComSprite(P1[sChar()]->getSprite(), P1[sChar()]->getX(), P1[sChar()]->getY(), 0, P2[sChar()]->getSprite(), P2[sChar()]->getX(), P2[sChar()]->getY(),0,true))
+	if (gTeclado.soltou[TECLA_ESPACO] && P1[0] || P1[2] && uniTestarColisaoSpriteComSprite(P1[sChar()]->getSprite(), P1[sChar()]->getX(), P1[sChar()]->getY(), 0, P2[sChar()]->getSprite(), P2[sChar()]->getX(), P2[sChar()]->getY(),0,true))
 	{
-		if (gTeclado.soltou[TECLA_ESPACO] && P1[0] || P1[2])
-		{
-			P1[0]->setSpriteSheet("knight1");
-			P1[2]->setSpriteSheet("thief1");
-			P2[0]->sethpMax(-20);
-			P2[2]->sethpMax(-20);
-			P2[sChar()]->DamageTaken();
-			P2[sChar()]->healthBar - 10;
-			
-		}
-		if (gTeclado.soltou[TECLA_CTRL_DIR] && P2[0] || P2[2])
-		{
-			P1[0]->setSpriteSheet("knight1");
-			P1[2]->setSpriteSheet("thief1");
-			P1[0]->sethpMax(-20);
-			P1[2]->sethpMax(-20);
-			P1[sChar()]->DamageTaken();
-			P1[sChar()]->healthBar - 10;
-			
-		}
 		
+		
+			P1[0]->setSpriteSheet("knight1");
+			P1[2]->setSpriteSheet("thief1");			
+			P2[sChar()]->DamageTaken();
+			P2[sChar()]->sethP(-10);
+			P2[sChar()]->gethpMax();
+			
+			gGraficos.desenharRetangulo(200, 30, 10, 0, P2[sChar()]->getX(), P2[sChar()]->getY() - 50, 0, 0, 0, 128);
+
+			damage_t.setFonte("fonte2");
+			damage_t.setString(damage);
+			damage_t.desenhar(P2[sChar()]->getX(), P2[sChar()]->getY() - 60);
+			
+		
+			
 
 		return true;
 	}
+	    //COLLISION P2 SHOT IN P1
+
+	if (gTeclado.soltou[TECLA_CTRL_DIR] && P2[0] || P2[2] && uniTestarColisao(P2[sChar()]->getX(), P2[sChar()]->getY(), P1[sChar()]->getShot(), P1[sChar()]->getShotX(), P1[sChar()]->getShotY(), P1[sChar()]->getDir()))
+	{
+		P1[0]->setSpriteSheet("knight1");
+		P1[2]->setSpriteSheet("thief1");
+
+		P1[sChar()]->DamageTaken();
+		P1[sChar()]->sethP(-10);
+		P1[sChar()]->gethpMax();
+		gGraficos.desenharRetangulo(200, 30, 10, 0, P1[sChar()]->getX(), P1[sChar()]->getY() - 60, 0, 0, 0, 128); 
+		damage_t.setFonte("fonte2");
+		damage_t.setString(damage);
+		damage_t.desenhar(P1[sChar()]->getX(), P1[sChar()]->getY() - 60);//Damage taken P1.
+		
+		
+		return true;
+		
+	}
+	
+	//COLLISION P1 SHOT IN P2
+
+	if (gTeclado.soltou[TECLA_ESPACO] && P1[0] || P1[2] && uniTestarColisao(P1[sChar()]->getX(), P1[sChar()]->getY(), P2[sChar()]->getShot(), P2[sChar()]->getShotX(), P2[sChar()]->getShotY(), P2[sChar()]->getDir()))
+		{
+			P2[sChar()]->DamageTaken();			
+			P2[sChar()]->sethP(-10);
+			P2[sChar()]->gethpMax();
+			gGraficos.desenharRetangulo(200, 30, 10, 0, P2[sChar()]->getX(), P2[sChar()]->getY() - 60, 0, 0, 0, 128);
+			damage_t.setFonte("fonte2");
+			damage_t.setString(damage);
+			damage_t.desenhar(P2[sChar()]->getX(), P2[sChar()]->getY() - 60);
+
+			return true;
+		}
+
+
+
+	
 
 	return false;
 }

@@ -2,6 +2,7 @@
 #include "libUnicornio.h"
 #include "Resources_Sound.h" 
 #include <ctime>
+#include "Personagem.h"
 
 
 #pragma once
@@ -15,6 +16,11 @@ public:
 	virtual void draw();
 	virtual void attack();
 	virtual void walk();
+	Sprite getShot();
+	float getShotX();
+	float getShotY();
+	int getDir();
+
 	float getX();
 	float getY();
 	void setSpeed(float speed_);
@@ -55,7 +61,7 @@ protected:
 
 	float mx, my;
 	float tx, ty; //shot 
-	float speed;
+	float speed = 1;
 	int direcao = 0;
 
 	bool vivo = false;
@@ -70,7 +76,7 @@ protected:
 	//SOUNDS
 
 	Resources_Sound Sounds;
-	Resources_Sound Theme;
+	
 
 	//ATRIBUTTES
 
@@ -79,6 +85,8 @@ protected:
 	int atk, atkM; //Atk
 	int def, defM;
 	int stamina, healthp;
+
+	Personagem tiro;
 
 	
 

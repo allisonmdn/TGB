@@ -109,12 +109,20 @@ void Personagem::sethP(int healthp_)
 void Personagem::setStaminaMax(int StaMax)
 {
 	this->staminaBar = StaMax;
+	if (staminaBar == 0)
+	{
+		setStaminaMax(0);
+	}
 
 }
 
 void Personagem::sethpMax(int hPMax)
 {
 	this->healthBar = hPMax;
+		if (healthBar == 0)
+		{
+			sethpMax(0);
+		}
 }
 
 void Personagem::setStamina(int stamina_)
@@ -325,6 +333,26 @@ float Personagem::getX()
 float Personagem::getY()
 {
 	return my;
+}
+
+Sprite Personagem::getShot()
+{
+	return tiro;
+}
+
+float Personagem::getShotX()
+{
+	return x;
+}
+
+float Personagem::getShotY()
+{
+	return y;
+}
+
+int Personagem::getDir()
+{
+	return direcao;
 }
 
 

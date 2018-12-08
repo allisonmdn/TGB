@@ -13,7 +13,7 @@ Mage::~Mage()
 }
 void Mage::attack()
 {
-	if (gTeclado.pressionou[TECLA_ESPACO] && vivo == false)
+	if (gTeclado.pressionou[TECLA_ESPACO]&& vivo == false)
 	{
 		vivo = true;
 
@@ -23,7 +23,7 @@ void Mage::attack()
 		while (vivo == true) {
 
 
-			if (direcao == 2 && gTeclado.soltou[TECLA_ESPACO])
+			/*if (direcao == 2 && gTeclado.soltou[TECLA_ESPACO])
 			{
 				spr.setFrame(2);
 				spr.getFrame();
@@ -36,7 +36,7 @@ void Mage::attack()
 			}
 			if (direcao == 3 && gTeclado.soltou[TECLA_ESPACO])
 			{
-				spr.setFrame(3);
+				spr.setFrame(3);				
 				spr.getFrame();
 
 			}
@@ -45,32 +45,32 @@ void Mage::attack()
 				spr.setFrame(0);
 				spr.getFrame();
 
-			}
+			}*/
 
 			if (direcao == 2)
 			{
 				tiro.desenhar(x, y, direcao);
-				x += 1;	 // x+
+				x += getSpeed();	 // x+
 			}
 
 			if (direcao == 1)
 			{
 				tiro.desenhar(x, y, direcao);
-				x -= 1;	  // x-
+				x -= getSpeed();	  // x-
 				
 			}
 
 			if (direcao == 3)
 			{
 				tiro.desenhar(x, y,direcao);
-				y -= 1;// y-
+				y -= getSpeed();// y-
 
 			}
 
 			if (direcao == 0)
 			{
 				tiro.desenhar(x, y, direcao);
-				y += 1;// y+   				
+				y += getSpeed();// y+   				
 			}
 
 			if (x < tiro.getLargura() || x > gJanela.getLargura() + tiro.getLargura())
